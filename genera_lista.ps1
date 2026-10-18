@@ -6,14 +6,19 @@
     - iptv-org/iptv (canali italiani pubblici, integrazione)     https://github.com/iptv-org/iptv
     - EPG epgshare01 Italia                                      https://epgshare01.online
 
-  Uso:  powershell -ExecutionPolicy Bypass -File genera_lista.ps1 [-Uscita lista_italia.m3u] [-NoCheck] [-Backup]
-    -NoCheck  salta la verifica dei flussi (più veloce, ma include link morti)
-    -Backup   tiene anche i flussi alternativi funzionanti dello stesso canale
+  Uso:  powershell -ExecutionPolicy Bypass -File genera_lista.ps1 [-Uscita lista_italia.m3u] [-NoCheck] [-Backup] [-TieniGeo]
+    -NoCheck   salta la verifica dei flussi (più veloce, ma include link morti)
+    -Backup    tiene anche i flussi alternativi funzionanti dello stesso canale
+    -TieniGeo  non verifica i flussi geobloccati (visibili solo dall'Italia) e li tiene comunque:
+               da usare quando lo script gira fuori dall'Italia (es. GitHub Actions)
+    -MinCanali se la lista risultante ha meno canali di così, non la scrive (sorgenti irraggiungibili)
 #>
 param(
   [string]$Uscita = (Join-Path $PSScriptRoot 'lista_italia.m3u'),
   [switch]$NoCheck,
   [switch]$Backup,
+  [switch]$TieniGeo,
+  [int]$MinCanali = 150,
   [int]$Timeout = 10,
   [int]$Paralleli = 24
 )
@@ -25,6 +30,29 @@ $FONTE_FREETV = 'https://raw.githubusercontent.com/Free-TV/IPTV/master/playlists
 $FONTE_IPTVORG = 'https://iptv-org.github.io/iptv/countries/it.m3u'
 $EPG_URL = 'https://epgshare01.online/epgshare01/epg_ripper_IT1.xml.gz'
 $UA = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0 Safari/537.36'
+
+# Numerazione LCN nazionale del digitale terrestre (fonte: Wikipedia, "Servizi televisivi digitali
+# terrestri nazionali in Italia", ottobre 2026). Ogni numero ha uno o più nomi con cui il canale
+# compare nelle sorgenti. I canali locali (LCN 10-19, 71-99, 600+) cambiano per regione: restano senza numero.
+$LCN = @{
+  1 = 'Rai 1'; 2 = 'Rai 2'; 3 = 'Rai 3'; 4 = 'Rete 4'; 5 = 'Canale 5'; 6 = 'Italia 1'; 7 = 'La7'; 8 = 'TV8'; 9 = 'Nove'
+  20 = '20 Mediaset', '20'; 21 = 'Rai 4'; 22 = 'Iris'; 23 = 'Rai 5'; 24 = 'Rai Movie'; 25 = 'Rai Premium'; 26 = 'Cielo'
+  27 = '27 Twentyseven', 'Twentyseven'; 28 = 'TV2000', 'TV 2000'; 29 = 'La7 Cinema', 'La7d'; 30 = 'La 5'; 31 = 'Real Time'
+  32 = 'QVC'; 33 = 'Food Network'; 34 = 'Cine34'; 35 = 'Focus'; 36 = 'RTL 102.5'; 37 = 'Discovery Channel', 'Discovery'
+  38 = 'Giallo'; 39 = 'Top Crime'; 40 = 'Boing'; 41 = 'K2'; 42 = 'Rai Gulp'; 43 = 'Rai YoYo'; 44 = 'Frisbee'
+  45 = 'Boing Plus'; 46 = 'Cartoonito'; 47 = 'Super!'; 48 = 'Rai News 24'; 49 = 'Italia 2', 'Mediaset Italia2'
+  50 = 'Sky TG24'; 51 = 'TGCOM 24', 'TGCom24'; 52 = 'DMAX'; 54 = 'Rai Storia'; 55 = 'Mediaset Extra'
+  56 = 'HGTV', 'HGTV – Home & Garden Tv'; 58 = 'Rai Sport'; 59 = 'Turbo', 'Discovery Turbo', 'Motor Trend'
+  60 = 'Sportitalia', 'Sportitalia Plus'; 61 = 'Club TV'; 62 = 'Donna Sport TV'; 63 = 'IlSole24ORE TV'; 64 = 'SuperTennis'
+  65 = 'Alma TV'; 66 = 'Radio 105 TV', 'Radio 105'; 67 = 'R101 TV'; 68 = 'BOM Channel'; 69 = 'Deejay TV'
+  70 = 'Radio Italia TV', 'RadioItaliaTV'; 101 = 'Rai 4K'; 145 = 'Padre Pio TV'; 151 = 'EQUtv'; 157 = 'Fascino TV'
+  158 = 'Radio Kiss Kiss TV'; 167 = 'VH1'; 202 = 'Rai Radio 2 Visual Radio', 'Rai Radio 2 Visual'; 232 = 'Match Music'
+  233 = 'RTL 102.5 Caliente'; 234 = 'Cusano News 7'; 236 = 'Man-ga'; 241 = 'France 24'
+  246 = 'Radio 24 TV', 'Radio24-IlSole24OreTV'; 247 = 'BeJoy Kids'; 253 = 'Radio Radio TV'; 255 = 'Maria Vision'
+  257 = 'Gambero Rosso'; 258 = 'RadioFreccia'; 265 = 'RDS Social TV'; 266 = 'Radio Zeta'; 550 = 'San Marino RTV', 'RTV San Marino'
+  739 = 'RTL 102.5 Traffic'; 740 = 'RTL 102.5 Best'; 741 = 'RTL 102.5 Napule'; 742 = 'RTL 102.5 Disco'
+  744 = 'RTL 102.5 Bro&Sis'; 828 = 'Class CNBC'; 833 = 'SuperSix'
+}
 
 function Scarica([string]$url) {
   $wc = New-Object Net.WebClient
@@ -50,7 +78,8 @@ function Leggi-M3U([byte[]]$dati, [string]$fonte) {
       $attr = @{}
       foreach ($m in [regex]::Matches($r, '([\w-]+)="([^"]*)"')) { $attr[$m.Groups[1].Value] = $m.Groups[2].Value }
       $nome = ($r -replace '^.*?,(?=[^"]*$)', '').Trim()
-      $cur = [pscustomobject]@{ Nome = $nome; Attr = $attr; Opz = @(); Url = $null; Fonte = $fonte; UA = $null; Referer = $null }
+      # Free-TV segna con il simbolo (G) cerchiato i flussi visibili solo dall'Italia
+      $cur = [pscustomobject]@{ Nome = $nome; Attr = $attr; Opz = @(); Url = $null; Fonte = $fonte; UA = $null; Referer = $null; Geo = ($nome -match 'Ⓖ') }
     }
     elseif ($cur -and $r -like '#EXTVLCOPT*') {
       $cur.Opz += $r
@@ -64,7 +93,17 @@ function Leggi-M3U([byte[]]$dati, [string]$fonte) {
   $voci
 }
 
-function Categoria($v, [bool]$haEpg) {
+$lcnPerNome = @{}
+foreach ($num in $LCN.Keys) { foreach ($alias in @($LCN[$num])) { $lcnPerNome[(Normalizza $alias)] = $num } }
+
+function Trova-LCN($v) {
+  foreach ($k in @((Normalizza $v.Nome), (Normalizza $v.Attr['tvg-name']))) {
+    if ($k -and $lcnPerNome.ContainsKey($k)) { return $lcnPerNome[$k] }
+  }
+  9999
+}
+
+function Categoria($v, [bool]$haEpg, [int]$lcn) {
   $n = Normalizza $v.Nome
   switch -regex ($n) {
     '^(camera|senato)'                                   { return 'Istituzionali' }
@@ -75,8 +114,7 @@ function Categoria($v, [bool]$haEpg) {
     '(sport|tennis|solocalcio|seriea|motor)'             { return 'Sport' }
     '(radio|music|mtv|deejay|kisskiss|m2o|rds|rtl|virgin|105|vh1)' { return 'Musica e Radiovisione' }
   }
-  $chno = 0; [void][int]::TryParse([string]$v.Attr['tvg-chno'], [ref]$chno)
-  if (($chno -ge 1 -and $chno -le 99) -or $haEpg) { 'Nazionali' } else { 'Locali e altri' }
+  if ($lcn -lt 9999 -or $haEpg) { 'Nazionali' } else { 'Locali e altri' }
 }
 
 Write-Host '1/4  Scarico le playlist sorgente...'
@@ -140,6 +178,7 @@ if (-not $NoCheck) {
   }
   $pool = [RunspaceFactory]::CreateRunspacePool(1, $Paralleli); $pool.Open()
   $jobs = foreach ($v in $voci) {
+    if ($TieniGeo -and $v.Geo) { $v | Add-Member Ok $true; continue }
     $ps = [PowerShell]::Create().AddScript($verifica).AddArgument($v.Url).AddArgument($(if ($v.UA) { $v.UA } else { $UA })).AddArgument($v.Referer).AddArgument($Timeout)
     $ps.RunspacePool = $pool
     [pscustomobject]@{ V = $v; PS = $ps; H = $ps.BeginInvoke() }
@@ -172,17 +211,21 @@ $righe.Add("#EXTM3U x-tvg-url=`"$EPG_URL`" url-tvg=`"$EPG_URL`"")
 $elenco = foreach ($k in $canali.Keys) {
   $lista = $canali[$k]; $p = $lista[0]
   $nome = ([regex]::Replace($p.Nome, '\s*(\(.*?\)|\[.*?\]|[Ⓐ-ⓩ])', '')).Trim()
-  $chno = 999; [void][int]::TryParse([string]$p.Attr['tvg-chno'], [ref]$chno); if ($chno -eq 0) { $chno = 999 }
+  $chno = Trova-LCN $p
   $logo = ($lista | ForEach-Object { $_.Attr['tvg-logo'] } | Where-Object { $_ } | Select-Object -First 1)
-  [pscustomobject]@{ Nome = $nome; Chno = $chno; Logo = $logo; Epg = $p.EpgId; Cat = (Categoria $p ([bool]$p.EpgId)); Flussi = $(if ($Backup) { $lista } else { @($p) }) }
+  [pscustomobject]@{ Nome = $nome; Chno = $chno; Logo = $logo; Epg = $p.EpgId; Cat = (Categoria $p ([bool]$p.EpgId) $chno); Flussi = $(if ($Backup) { $lista } else { @($p) }) }
 }
-$elenco = $elenco | Sort-Object @{ e = { [array]::IndexOf($ordineCat, $_.Cat) } }, Chno, Nome
+# prima i canali con LCN nell'ordine del telecomando, poi gli altri per gruppo
+$elenco = $elenco | Sort-Object Chno, @{ e = { [array]::IndexOf($ordineCat, $_.Cat) } }, Nome
+if ($elenco.Count -lt $MinCanali) {
+  throw "Solo $($elenco.Count) canali (minimo $MinCanali): le sorgenti sembrano irraggiungibili, la lista non viene sovrascritta."
+}
 foreach ($c in $elenco) {
   $n = 0
   foreach ($f in $c.Flussi) {
     $titolo = if ($n -eq 0) { $c.Nome } else { "$($c.Nome) (backup $n)" }
     $a = "tvg-id=`"$($c.Epg)`" tvg-name=`"$($c.Nome)`""
-    if ($c.Chno -lt 999) { $a += " tvg-chno=`"$($c.Chno)`"" }
+    if ($c.Chno -lt 9999) { $a += " tvg-chno=`"$($c.Chno)`"" }
     if ($c.Logo) { $a += " tvg-logo=`"$($c.Logo)`"" }
     $righe.Add("#EXTINF:-1 $a group-title=`"$($c.Cat)`",$titolo")
     foreach ($o in $f.Opz) { $righe.Add($o) }

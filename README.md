@@ -30,7 +30,15 @@ https://epgshare01.online/epgshare01/epg_ripper_IT1.xml.gz
 
 Alcuni flussi (soprattutto Rai e Mediaset) sono visibili solo da connessioni italiane.
 
-## Rigenerare la lista
+I canali nazionali hanno la **numerazione LCN italiana** del digitale terrestre (Rai 1 = 1, Canale 5 = 5, La7 = 7, Rai 4 = 21, Real Time = 31, DMAX = 52…), quindi nel player compaiono nello stesso ordine del telecomando. Le emittenti locali, la cui numerazione cambia da regione a regione, sono in fondo senza numero.
+
+## Aggiornamento automatico
+
+Ogni notte GitHub Actions ([`aggiorna-lista.yml`](.github/workflows/aggiorna-lista.yml)) rigenera la lista e, se è cambiata, la pubblica. L'URL della playlist resta sempre lo stesso. Si può avviare anche a mano dalla scheda **Actions** → **Aggiorna lista** → **Run workflow**.
+
+I server di GitHub sono fuori dall'Italia, quindi lì lo script gira con `-TieniGeo`: i flussi segnalati come geobloccati vengono mantenuti senza verificarli.
+
+## Rigenerare la lista a mano
 
 I link cambiano spesso. Lo script scarica le sorgenti, verifica che ogni flusso risponda, elimina i doppioni, abbina l'EPG e scrive `lista_italia.m3u`:
 
@@ -42,6 +50,8 @@ Opzioni:
 
 - `-Backup`: aggiunge i flussi alternativi funzionanti dello stesso canale
 - `-NoCheck`: salta la verifica dei flussi (più veloce, ma include link morti)
+- `-TieniGeo`: tiene i flussi geobloccati senza verificarli (per l'uso fuori dall'Italia)
+- `-MinCanali <n>`: non sovrascrive la lista se ne escono meno di `n` canali (predefinito 150)
 - `-Uscita <file>`: percorso del file da generare
 
 Richiede Windows PowerShell 5.1 o successivo.
