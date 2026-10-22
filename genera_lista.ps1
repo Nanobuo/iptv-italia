@@ -117,8 +117,17 @@ function Categoria($v, [bool]$haEpg, [int]$lcn) {
   if ($lcn -lt 9999 -or $haEpg) { 'Nazionali' } else { 'Locali e altri' }
 }
 
+# Fonti scelte a mano, che hanno la precedenza su quelle delle playlist sorgente.
+# Rai 2: relinker ufficiale in modalità Apple TV, l'unica che offre anche 1080p (le altre si fermano a 720p).
+$FONTI_FISSE = @(
+  @{ Nome = 'Rai 2'; Id = 'Rai2.it'; Url = 'https://mediapolis.rai.it/relinker/relinkerServlet.htm?cont=308718&output=7&forceUserAgent=raiplayappletv' }
+)
+
 Write-Host '1/4  Scarico le playlist sorgente...'
 $voci = @()
+foreach ($f in $FONTI_FISSE) {
+  $voci += [pscustomobject]@{ Nome = $f.Nome; Attr = @{ 'tvg-id' = $f.Id; 'tvg-name' = $f.Nome }; Opz = @(); Url = $f.Url; Fonte = 'fissa'; UA = $null; Referer = $null; Geo = $true }
+}
 $voci += Leggi-M3U (Scarica $FONTE_FREETV) 'Free-TV'
 $org = Leggi-M3U (Scarica $FONTE_IPTVORG) 'iptv-org'
 # da iptv-org teniamo solo canali italiani (scarta canali FAST esteri doppiati: Pluto, Samsung, ecc.)
