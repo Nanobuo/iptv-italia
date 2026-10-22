@@ -126,6 +126,15 @@ $org = $org | Where-Object { $_.Attr['tvg-id'] -match '\.(it|va|sm)(@|$)' -and $
 $voci += $org
 # i link YouTube non sono riproducibili nei player IPTV senza resolver
 $voci = $voci | Where-Object { $_.Url -notmatch 'youtube\.com|youtu\.be' }
+# A parità di canale vince il flusso dell'emittente rispetto alle ritrasmissioni di terzi (più stabile).
+# Il relinker Rai rifiuta lo user-agent di VLC: gli si dichiara quello di un browser.
+$i = 0
+foreach ($v in $voci) {
+  $v | Add-Member Indice ($i++)
+  $v | Add-Member Ufficiale ($v.Url -match '^https?://([\w-]+\.)*(rai\.it|mediaset\.net|la7\.it)/')
+  if ($v.Url -match 'mediapolis\.rai\.it/relinker' -and -not $v.UA) { $v.UA = $UA; $v.Opz += "#EXTVLCOPT:http-user-agent=$UA" }
+}
+$voci = $voci | Sort-Object @{ e = { -not $_.Ufficiale } }, Indice
 Write-Host "     $($voci.Count) flussi candidati"
 
 Write-Host '2/4  Scarico e indicizzo la guida EPG...'
