@@ -118,10 +118,12 @@ function Categoria($v, [bool]$haEpg, [int]$lcn) {
 }
 
 # Fonti scelte a mano, che hanno la precedenza su quelle delle playlist sorgente.
-# Rai 2: ritrasmissione su CloudFront, l'unica fonte che funziona anche nei lettori web (il relinker
+# Rai 1, 2, 3: ritrasmissione su CloudFront, l'unica fonte che funziona anche nei lettori web (il relinker
 # ufficiale Rai non ha intestazioni CORS). Se non risponde, si torna al flusso ufficiale.
 $FONTI_FISSE = @(
+  @{ Nome = 'Rai 1'; Id = 'Rai1.it'; Url = 'https://d3k8wzt41aflvx.cloudfront.net/RAI1/Live.m3u8' }
   @{ Nome = 'Rai 2'; Id = 'Rai2.it'; Url = 'https://d3k8wzt41aflvx.cloudfront.net/RAI2/Live.m3u8' }
+  @{ Nome = 'Rai 3'; Id = 'Rai3.it'; Url = 'https://d3k8wzt41aflvx.cloudfront.net/RAI3/Live.m3u8' }
 )
 
 Write-Host '1/4  Scarico le playlist sorgente...'
