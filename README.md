@@ -30,6 +30,16 @@ https://epgshare01.online/epgshare01/epg_ripper_IT1.xml.gz
 
 Alcuni flussi (soprattutto Rai e Mediaset) sono visibili solo da connessioni italiane.
 
+### Canali Rai e voci "alternativo"
+
+Per i canali Rai la lista usa il flusso ufficiale Rai, il più stabile. Il server Rai però accetta solo alcuni user-agent: la lista dichiara quello di un browser con `#EXTVLCOPT`, che VLC, Kodi e TiviMate rispettano. I player che non lo fanno, come IPTVnator, ricevono un errore. Per loro ogni canale Rai ha anche una voce **"(alternativo)"**, che punta a una ritrasmissione di terzi.
+
+In alternativa, nelle impostazioni della playlist di IPTVnator si può impostare questo user-agent:
+
+```
+Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0 Safari/537.36
+```
+
 I canali nazionali hanno la **numerazione LCN italiana** del digitale terrestre (Rai 1 = 1, Canale 5 = 5, La7 = 7, Rai 4 = 21, Real Time = 31, DMAX = 52…), quindi nel player compaiono nello stesso ordine del telecomando. Le emittenti locali, la cui numerazione cambia da regione a regione, sono in fondo senza numero.
 
 ## Aggiornamento automatico
