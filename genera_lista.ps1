@@ -118,15 +118,16 @@ function Categoria($v, [bool]$haEpg, [int]$lcn) {
 }
 
 # Fonti scelte a mano, che hanno la precedenza su quelle delle playlist sorgente.
-# Rai 2: relinker ufficiale in modalità Apple TV, l'unica che offre anche 1080p (le altre si fermano a 720p).
+# Rai 2: ritrasmissione su CloudFront, l'unica fonte che funziona anche nei lettori web (il relinker
+# ufficiale Rai non ha intestazioni CORS). Se non risponde, si torna al flusso ufficiale.
 $FONTI_FISSE = @(
-  @{ Nome = 'Rai 2'; Id = 'Rai2.it'; Url = 'https://mediapolis.rai.it/relinker/relinkerServlet.htm?cont=308718&output=7&forceUserAgent=raiplayappletv' }
+  @{ Nome = 'Rai 2'; Id = 'Rai2.it'; Url = 'https://d3k8wzt41aflvx.cloudfront.net/RAI2/Live.m3u8' }
 )
 
 Write-Host '1/4  Scarico le playlist sorgente...'
 $voci = @()
 foreach ($f in $FONTI_FISSE) {
-  $voci += [pscustomobject]@{ Nome = $f.Nome; Attr = @{ 'tvg-id' = $f.Id; 'tvg-name' = $f.Nome }; Opz = @(); Url = $f.Url; Fonte = 'fissa'; UA = $null; Referer = $null; Geo = $true }
+  $voci += [pscustomobject]@{ Nome = $f.Nome; Attr = @{ 'tvg-id' = $f.Id; 'tvg-name' = $f.Nome }; Opz = @(); Url = $f.Url; Fonte = 'fissa'; UA = $null; Referer = $null; Geo = $false }
 }
 $voci += Leggi-M3U (Scarica $FONTE_FREETV) 'Free-TV'
 $org = Leggi-M3U (Scarica $FONTE_IPTVORG) 'iptv-org'
@@ -143,7 +144,7 @@ foreach ($v in $voci) {
   $v | Add-Member Ufficiale ($v.Url -match '^https?://([\w-]+\.)*(rai\.it|mediaset\.net|la7\.it)/')
   if ($v.Url -match 'mediapolis\.rai\.it/relinker' -and -not $v.UA) { $v.UA = $UA; $v.Opz += "#EXTVLCOPT:http-user-agent=$UA" }
 }
-$voci = $voci | Sort-Object @{ e = { -not $_.Ufficiale } }, Indice
+$voci = $voci | Sort-Object @{ e = { $_.Fonte -ne 'fissa' } }, @{ e = { -not $_.Ufficiale } }, Indice
 Write-Host "     $($voci.Count) flussi candidati"
 
 Write-Host '2/4  Scarico e indicizzo la guida EPG...'

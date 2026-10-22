@@ -3,8 +3,7 @@
 #EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0 Safari/537.36
 https://mediapolis.rai.it/relinker/relinkerServlet.htm?cont=2606803&output=7&forceUserAgent=rainet/4.0.5
 #EXTINF:-1 tvg-id="Rai2.it" tvg-name="Rai 2" tvg-chno="2" tvg-logo="https://i.imgur.com/zA0PTcs.png" group-title="Rai",Rai 2
-#EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0 Safari/537.36
-https://mediapolis.rai.it/relinker/relinkerServlet.htm?cont=308718&output=7&forceUserAgent=raiplayappletv
+https://d3k8wzt41aflvx.cloudfront.net/RAI2/Live.m3u8
 #EXTINF:-1 tvg-id="Rai3.it" tvg-name="Rai 3" tvg-chno="3" tvg-logo="https://i.imgur.com/9kuQCIi.png" group-title="Rai",Rai 3
 #EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0 Safari/537.36
 https://mediapolis.rai.it/relinker/relinkerServlet.htm?cont=308709&output=7&forceUserAgent=rainet/4.0.5
@@ -101,6 +100,8 @@ https://mediapolis.rai.it/relinker/relinkerServlet.htm?cont=358025&output=7&forc
 https://streaming.aurora.enhanced.live/live/mpc/enl0eG1mLmVncmVzcy5mZDJ2eHI=/out/v1/IT_SIMULCAST/TURBO/CMAF/index.m3u8
 #EXTINF:-1 tvg-id="Sportitalia.HD.it" tvg-name="Sportitalia Plus" tvg-chno="60" tvg-logo="https://i.imgur.com/hu56Ya5.png" group-title="Sport",Sportitalia Plus
 https://sportsitalia-samsungitaly.amagi.tv/playlist.m3u8
+#EXTINF:-1 tvg-id="SuperTennis.HD.it" tvg-name="SuperTennis" tvg-chno="64" tvg-logo="https://i.imgur.com/GzsPlbX.png" group-title="Sport",SuperTennis
+https://live-embed.supertennix.hiway.media/restreamer/supertennix_client/gpu-a-c0-16/restreamer/outgest/aa3673f1-e178-44a9-a947-ef41db73211a/manifest.m3u8
 #EXTINF:-1 tvg-id="" tvg-name="Alma TV" tvg-chno="65" tvg-logo="https://i.imgur.com/Y8JiDwN.png" group-title="Nazionali",Alma TV
 https://5f11919dca3bd.streamlock.net/almatv/almatv/playlist.m3u8
 #EXTINF:-1 tvg-id="Radio.105.it" tvg-name="Radio 105 TV" tvg-chno="66" tvg-logo="https://i.imgur.com/3NiLKvj.png" group-title="Musica e Radiovisione",Radio 105 TV
@@ -117,6 +118,8 @@ https://radioitaliatv.akamaized.net/hls/live/2093117/RadioitaliaTV/master.m3u8
 https://raievent10-elem-live.akamaized.net/hls/live/619189/raievent10/raievent10/playlist.m3u8
 #EXTINF:-1 tvg-id="" tvg-name="Padre Pio Tv" tvg-chno="145" tvg-logo="https://i.imgur.com/7ajxEPH.png" group-title="Nazionali",Padre Pio Tv
 https://600f07e114306.streamlock.net/PadrePioTV/livestream/playlist.m3u8
+#EXTINF:-1 tvg-id="EQUtv.it" tvg-name="EQUtv" tvg-chno="151" tvg-logo="https://i.imgur.com/x9Wdz7h.png" group-title="Nazionali",EQUtv
+https://ippicabetflag-live.morescreens.com/IPPICA_1_003/304p.m3u8
 #EXTINF:-1 tvg-id="" tvg-name="Fascino Tv" tvg-chno="157" tvg-logo="https://i.imgur.com/4XYYY5B.png" group-title="Nazionali",Fascino Tv
 https://64b16f23efbee.streamlock.net/canale157/canale157/playlist.m3u8
 #EXTINF:-1 tvg-id="" tvg-name="Radio KISS KISS TV" tvg-chno="158" tvg-logo="https://i.imgur.com/UTStxDW.png" group-title="Musica e Radiovisione",Radio KISS KISS TV
@@ -454,6 +457,8 @@ https://customer-yzibk50951uq418a.cloudflarestream.com/a58893dee4b9922a75e41b4ec
 https://f5842579ff984c1c98d63b8d789673eb.msvdn.net/live/S47282891/JWjL3xqPf4bX/playlist.m3u8
 #EXTINF:-1 tvg-id="" tvg-name="L'altro Corriere TV" tvg-logo="https://i.imgur.com/05YWVCq.png" group-title="Locali e altri",L'altro Corriere TV
 https://52ee6512fee4427889eba89957975fa0.msvdn.net/live/S24350460/BEj8ZmQiQ9UG/playlist.m3u8
+#EXTINF:-1 tvg-id="" tvg-name="Lazio Style Channel HD" tvg-logo="https://i.imgur.com/vDB8HFq.png" group-title="Locali e altri",Lazio Style Channel HD
+https://distribution.sportitalialive.it/origin/laziostyle_abr/playlist.m3u8
 #EXTINF:-1 tvg-id="" tvg-name="Lazio Tv" tvg-logo="https://i.imgur.com/DAj5Uwb.png" group-title="Locali e altri",Lazio Tv
 https://5f11919dca3bd.streamlock.net/laziotv/laziotv/playlist.m3u8
 #EXTINF:-1 tvg-id="" tvg-name="Le Cronache Lucane Tv" tvg-logo="https://i.imgur.com/EBY3IZL.jpg" group-title="Locali e altri",Le Cronache Lucane Tv
@@ -478,8 +483,13 @@ https://a-cdn.klowdtv.com/live2/nautical_720p/playlist.m3u8
 https://www.ntimedia.it/video/S0B/S0B_master.m3u8
 #EXTINF:-1 tvg-id="" tvg-name="Nuova Tv 1" tvg-logo="https://i.imgur.com/1yqTZhR.png" group-title="Locali e altri",Nuova Tv 1
 https://nuovatv.net:8443/tv/stream.m3u8
+#EXTINF:-1 tvg-id="" tvg-name="Nuova TV Nazionale" tvg-logo="https://i.imgur.com/QWlRuXg.png" group-title="Locali e altri",Nuova TV Nazionale
+https://stream4.xdevel.com/video0s975955-782/stream/playlist.m3u8
 #EXTINF:-1 tvg-id="" tvg-name="Nuvola Tv" tvg-logo="https://i.imgur.com/EDGez2x.png" group-title="Locali e altri",Nuvola Tv
 https://stream.nuvola.tv:8181/memfs/4aaa6328-1879-4ebf-b18a-498146d0c61c.m3u8
+#EXTINF:-1 tvg-id="" tvg-name="Odeon 24" tvg-logo="https://i.imgur.com/Ho7SdXY.png" group-title="Locali e altri",Odeon 24
+#EXTVLCOPT:http-referrer=https://www.grupposciscione.it/odeon-2/#/?playlistId=0&videoId=0
+https://5f11919dca3bd.streamlock.net/odeonjump/_definst_/odeonjump/playlist.m3u8
 #EXTINF:-1 tvg-id="" tvg-name="Onda Novara Tv" tvg-logo="https://i.imgur.com/Qoh9CFy.png" group-title="Locali e altri",Onda Novara Tv
 https://585b674743bbb.streamlock.net/9006/9006/playlist.m3u8
 #EXTINF:-1 tvg-id="" tvg-name="Onda TV" tvg-logo="https://upload.wikimedia.org/wikipedia/it/thumb/9/99/Ondatv.jpg/512px-Ondatv.jpg" group-title="Locali e altri",Onda TV
@@ -492,6 +502,8 @@ https://w1.mediastreaming.it/orlertv/livestream/playlist.m3u8
 https://ottop-live-meride.akamaized.net/hls/live/2039996/ch1/playlist.m3u8
 #EXTINF:-1 tvg-id="" tvg-name="Paci Contemporary Channel" tvg-logo="https://i.imgur.com/RtOvD2M.png" group-title="Locali e altri",Paci Contemporary Channel
 https://5f22d76e220e1.streamlock.net/pacicontemporarychannel/pacicontemporarychannel/playlist.m3u8
+#EXTINF:-1 tvg-id="" tvg-name="Paradise Tv" tvg-logo="https://i.imgur.com/okIBfIb.jpg" group-title="Locali e altri",Paradise Tv
+https://tsw.streamingwebtv24.it:1936/paradisetv/paradisetv/playlist.m3u8
 #EXTINF:-1 tvg-id="" tvg-name="Parole di Vita" tvg-logo="https://i.imgur.com/M9mIiZD.png" group-title="Locali e altri",Parole di Vita
 https://stream.paroledivita.org/paroledivita.m3u8
 #EXTINF:-1 tvg-id="" tvg-name="Partenope Tv" tvg-logo="https://i.imgur.com/FtuWkj1.png" group-title="Locali e altri",Partenope Tv
@@ -594,6 +606,8 @@ https://stream7.xdevel.com/video0s976425-1244/stream/playlist_dvr.m3u8
 https://playerssl.telemia.tv/fileadmin/hls/Telebruzzano/telebruzzano_mediachunks.m3u8
 #EXTINF:-1 tvg-id="" tvg-name="Tele Chiara" tvg-logo="https://i.imgur.com/Q5XpnXR.png" group-title="Locali e altri",Tele Chiara
 http://fms.tvavicenza.it:1935/telechiara/diretta/playlist.m3u8
+#EXTINF:-1 tvg-id="" tvg-name="Tele Club Italia" tvg-logo="https://i.imgur.com/WxkOgg0.png" group-title="Locali e altri",Tele Club Italia
+https://www.theclubfactory.com/streaming/index.m3u8
 #EXTINF:-1 tvg-id="" tvg-name="Tele Cupole" tvg-logo="https://i.imgur.com/ZmUI9zb.png" group-title="Locali e altri",Tele Cupole
 https://load-balancer.azotosolutions.com/cdnedge40/telecupole/playlist.m3u8
 #EXTINF:-1 tvg-id="" tvg-name="Tele Foggia" tvg-logo="https://i.imgur.com/M7tqBu9.jpg" group-title="Locali e altri",Tele Foggia
@@ -656,6 +670,8 @@ https://antennasicilialive.cdn.netrw.it/antennasicilialive/hls/ccr/telecolor/mas
 https://stream10.xdevel.com/video14s975955-1911/stream/playlist.m3u8
 #EXTINF:-1 tvg-id="" tvg-name="Telegenova" tvg-logo="https://i.imgur.com/D6HC0So.png" group-title="Locali e altri",Telegenova
 https://64b16f23efbee.streamlock.net/telegenova/telegenova/playlist.m3u8
+#EXTINF:-1 tvg-id="" tvg-name="Teleiblea" tvg-logo="https://i.imgur.com/n1THygZ.png" group-title="Locali e altri",Teleiblea
+https://64b16f23efbee.streamlock.net/teleiblea/teleiblea/playlist.m3u8
 #EXTINF:-1 tvg-id="" tvg-name="Teleleonessa" tvg-logo="https://i.imgur.com/jq3etlV.png" group-title="Locali e altri",Teleleonessa
 http://wms.shared.streamshow.it:1935/teleleonessa/teleleonessa/live.m3u8
 #EXTINF:-1 tvg-id="" tvg-name="TeleMajg" tvg-logo="https://i.imgur.com/9tefonp.jpg" group-title="Locali e altri",TeleMajg
