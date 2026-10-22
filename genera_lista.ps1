@@ -118,8 +118,8 @@ function Categoria($v, [bool]$haEpg, [int]$lcn) {
 }
 
 # Fonti scelte a mano, che hanno la precedenza su quelle delle playlist sorgente.
-# Rai 1, 2, 3: ritrasmissione su CloudFront, l'unica fonte che funziona anche nei lettori web (il relinker
-# ufficiale Rai non ha intestazioni CORS). Se non risponde, si torna al flusso ufficiale.
+# Rai 1, 2, 3: ritrasmissione su CloudFront, fissata qui per non perderla se sparisce dalle sorgenti.
+# Se non risponde, si torna al flusso ufficiale.
 $FONTI_FISSE = @(
   @{ Nome = 'Rai 1'; Id = 'Rai1.it'; Url = 'https://d3k8wzt41aflvx.cloudfront.net/RAI1/Live.m3u8' }
   @{ Nome = 'Rai 2'; Id = 'Rai2.it'; Url = 'https://d3k8wzt41aflvx.cloudfront.net/RAI2/Live.m3u8' }
@@ -138,15 +138,23 @@ $org = $org | Where-Object { $_.Attr['tvg-id'] -match '\.(it|va|sm)(@|$)' -and $
 $voci += $org
 # i link YouTube non sono riproducibili nei player IPTV senza resolver
 $voci = $voci | Where-Object { $_.Url -notmatch 'youtube\.com|youtu\.be' }
-# A parità di canale vince il flusso dell'emittente rispetto alle ritrasmissioni di terzi (più stabile).
+# Ordine di preferenza a parità di canale:
+#   0 fonti fisse; 1 flussi ufficiali Mediaset e La7;
+#   2 mirror CloudFront dei canali Rai: il relinker ufficiale Rai non funziona nei lettori web (niente CORS);
+#   3 relinker ufficiale Rai, per i canali Rai che non hanno il mirror; 4 altri flussi.
 # Il relinker Rai rifiuta lo user-agent di VLC: gli si dichiara quello di un browser.
 $i = 0
 foreach ($v in $voci) {
   $v | Add-Member Indice ($i++)
-  $v | Add-Member Ufficiale ($v.Url -match '^https?://([\w-]+\.)*(rai\.it|mediaset\.net|la7\.it)/')
+  $priorita = if ($v.Fonte -eq 'fissa') { 0 }
+              elseif ($v.Url -match '^https?://([\w-]+\.)*(mediaset\.net|la7\.it)/') { 1 }
+              elseif ($v.Url -match '^https://d3k8wzt41aflvx\.cloudfront\.net/rai') { 2 }
+              elseif ($v.Url -match 'mediapolis\.rai\.it/relinker') { 3 }
+              else { 4 }
+  $v | Add-Member Priorita $priorita
   if ($v.Url -match 'mediapolis\.rai\.it/relinker' -and -not $v.UA) { $v.UA = $UA; $v.Opz += "#EXTVLCOPT:http-user-agent=$UA" }
 }
-$voci = $voci | Sort-Object @{ e = { $_.Fonte -ne 'fissa' } }, @{ e = { -not $_.Ufficiale } }, Indice
+$voci = $voci | Sort-Object Priorita, Indice
 Write-Host "     $($voci.Count) flussi candidati"
 
 Write-Host '2/4  Scarico e indicizzo la guida EPG...'
@@ -217,7 +225,7 @@ if (-not $NoCheck) {
 
 Write-Host '4/4  Deduplico e scrivo la playlist...'
 $canali = [ordered]@{}; $perNome = @{}; $urlVisti = @{}
-foreach ($v in $voci) {   # Free-TV viene prima: a parità di canale vince il flusso ufficiale
+foreach ($v in $voci) {   # già ordinati per preferenza: a parità di canale vince il primo
   if ($urlVisti.ContainsKey($v.Url)) { continue }   # stesso flusso già usato da un altro canale
   $urlVisti[$v.Url] = $true
   $nk = Normalizza $v.Nome
