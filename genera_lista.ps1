@@ -222,12 +222,7 @@ $elenco = foreach ($k in $canali.Keys) {
   $nome = ([regex]::Replace($p.Nome, '\s*(\(.*?\)|\[.*?\]|[Ⓐ-ⓩ])', '')).Trim()
   $chno = Trova-LCN $p
   $logo = ($lista | ForEach-Object { $_.Attr['tvg-logo'] } | Where-Object { $_ } | Select-Object -First 1)
-  # Il relinker Rai non funziona con alcuni player (es. IPTVnator, che Rai blocca per user-agent):
-  # se esiste, si aggiunge anche la ritrasmissione di terzi come voce "alternativo".
-  $flussi = if ($Backup) { $lista }
-            elseif ($p.Url -match 'mediapolis\.rai\.it/relinker') { @($p) + @($lista | Where-Object { -not $_.Ufficiale } | Select-Object -First 1) }
-            else { @($p) }
-  [pscustomobject]@{ Nome = $nome; Chno = $chno; Logo = $logo; Epg = $p.EpgId; Cat = (Categoria $p ([bool]$p.EpgId) $chno); Flussi = $flussi }
+  [pscustomobject]@{ Nome = $nome; Chno = $chno; Logo = $logo; Epg = $p.EpgId; Cat = (Categoria $p ([bool]$p.EpgId) $chno); Flussi = $(if ($Backup) { $lista } else { @($p) }) }
 }
 # prima i canali con LCN nell'ordine del telecomando, poi gli altri per gruppo
 $elenco = $elenco | Sort-Object Chno, @{ e = { [array]::IndexOf($ordineCat, $_.Cat) } }, Nome
@@ -237,7 +232,7 @@ if ($elenco.Count -lt $MinCanali) {
 foreach ($c in $elenco) {
   $n = 0
   foreach ($f in $c.Flussi) {
-    $titolo = if ($n -eq 0) { $c.Nome } elseif ($Backup) { "$($c.Nome) (backup $n)" } else { "$($c.Nome) (alternativo)" }
+    $titolo = if ($n -eq 0) { $c.Nome } else { "$($c.Nome) (backup $n)" }
     $a = "tvg-id=`"$($c.Epg)`" tvg-name=`"$titolo`""
     if ($c.Chno -lt 9999 -and $n -eq 0) { $a += " tvg-chno=`"$($c.Chno)`"" }
     if ($c.Logo) { $a += " tvg-logo=`"$($c.Logo)`"" }
