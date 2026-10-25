@@ -118,18 +118,15 @@ function Categoria($v, [bool]$haEpg, [int]$lcn) {
 }
 
 # Fonti scelte a mano, che hanno la precedenza su quelle delle playlist sorgente.
-# Rai 1, 2, 3: ritrasmissione su CloudFront, fissata qui per non perderla se sparisce dalle sorgenti.
-# Se non risponde, si torna al flusso ufficiale.
+# Rai 2: relinker ufficiale in modalità Apple TV, l'unica che offre anche 1080p (le altre si fermano a 720p).
 $FONTI_FISSE = @(
-  @{ Nome = 'Rai 1'; Id = 'Rai1.it'; Url = 'https://d3k8wzt41aflvx.cloudfront.net/RAI1/Live.m3u8' }
-  @{ Nome = 'Rai 2'; Id = 'Rai2.it'; Url = 'https://d3k8wzt41aflvx.cloudfront.net/RAI2/Live.m3u8' }
-  @{ Nome = 'Rai 3'; Id = 'Rai3.it'; Url = 'https://d3k8wzt41aflvx.cloudfront.net/RAI3/Live.m3u8' }
+  @{ Nome = 'Rai 2'; Id = 'Rai2.it'; Url = 'https://mediapolis.rai.it/relinker/relinkerServlet.htm?cont=308718&output=7&forceUserAgent=raiplayappletv' }
 )
 
 Write-Host '1/4  Scarico le playlist sorgente...'
 $voci = @()
 foreach ($f in $FONTI_FISSE) {
-  $voci += [pscustomobject]@{ Nome = $f.Nome; Attr = @{ 'tvg-id' = $f.Id; 'tvg-name' = $f.Nome }; Opz = @(); Url = $f.Url; Fonte = 'fissa'; UA = $null; Referer = $null; Geo = $false }
+  $voci += [pscustomobject]@{ Nome = $f.Nome; Attr = @{ 'tvg-id' = $f.Id; 'tvg-name' = $f.Nome }; Opz = @(); Url = $f.Url; Fonte = 'fissa'; UA = $null; Referer = $null; Geo = $true }
 }
 $voci += Leggi-M3U (Scarica $FONTE_FREETV) 'Free-TV'
 $org = Leggi-M3U (Scarica $FONTE_IPTVORG) 'iptv-org'
@@ -139,18 +136,14 @@ $voci += $org
 # i link YouTube non sono riproducibili nei player IPTV senza resolver
 $voci = $voci | Where-Object { $_.Url -notmatch 'youtube\.com|youtu\.be' }
 # Ordine di preferenza a parità di canale:
-#   0 fonti fisse; 1 flussi ufficiali Mediaset e La7;
-#   2 mirror CloudFront dei canali Rai: il relinker ufficiale Rai non funziona nei lettori web (niente CORS);
-#   3 relinker ufficiale Rai, per i canali Rai che non hanno il mirror; 4 altri flussi.
+#   0 fonti fisse; 1 flussi ufficiali delle emittenti (Rai, Mediaset, La7), più stabili; 2 ritrasmissioni di terzi.
 # Il relinker Rai rifiuta lo user-agent di VLC: gli si dichiara quello di un browser.
 $i = 0
 foreach ($v in $voci) {
   $v | Add-Member Indice ($i++)
   $priorita = if ($v.Fonte -eq 'fissa') { 0 }
-              elseif ($v.Url -match '^https?://([\w-]+\.)*(mediaset\.net|la7\.it)/') { 1 }
-              elseif ($v.Url -match '^https://d3k8wzt41aflvx\.cloudfront\.net/rai') { 2 }
-              elseif ($v.Url -match 'mediapolis\.rai\.it/relinker') { 3 }
-              else { 4 }
+              elseif ($v.Url -match '^https?://([\w-]+\.)*(rai\.it|mediaset\.net|la7\.it)/') { 1 }
+              else { 2 }
   $v | Add-Member Priorita $priorita
   if ($v.Url -match 'mediapolis\.rai\.it/relinker' -and -not $v.UA) { $v.UA = $UA; $v.Opz += "#EXTVLCOPT:http-user-agent=$UA" }
 }
