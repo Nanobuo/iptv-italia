@@ -118,7 +118,7 @@ function Categoria($v, [bool]$haEpg, [int]$lcn) {
 }
 
 # Fonti scelte a mano, che hanno la precedenza su quelle delle playlist sorgente.
-# Rai 2: relinker ufficiale in modalità Apple TV, l'unica che offre anche 1080p (le altre si fermano a 720p).
+# Rai 2: relinker ufficiale, fissato qui per non perderlo se sparisce dalle sorgenti.
 $FONTI_FISSE = @(
   @{ Nome = 'Rai 2'; Id = 'Rai2.it'; Url = 'https://mediapolis.rai.it/relinker/relinkerServlet.htm?cont=308718&output=7&forceUserAgent=raiplayappletv' }
 )
@@ -145,7 +145,11 @@ foreach ($v in $voci) {
               elseif ($v.Url -match '^https?://([\w-]+\.)*(rai\.it|mediaset\.net|la7\.it)/') { 1 }
               else { 2 }
   $v | Add-Member Priorita $priorita
-  if ($v.Url -match 'mediapolis\.rai\.it/relinker' -and -not $v.UA) { $v.UA = $UA; $v.Opz += "#EXTVLCOPT:http-user-agent=$UA" }
+  if ($v.Url -match 'mediapolis\.rai\.it/relinker') {
+    # modalità Apple TV: offre 1080p dove Rai lo trasmette (Rai 1, 2, 3, Sport); per gli altri resta 720p
+    $v.Url = if ($v.Url -match 'forceUserAgent=') { $v.Url -replace 'forceUserAgent=[^&]*', 'forceUserAgent=raiplayappletv' } else { "$($v.Url)&forceUserAgent=raiplayappletv" }
+    if (-not $v.UA) { $v.UA = $UA; $v.Opz += "#EXTVLCOPT:http-user-agent=$UA" }
+  }
 }
 $voci = $voci | Sort-Object Priorita, Indice
 Write-Host "     $($voci.Count) flussi candidati"
