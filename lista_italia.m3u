@@ -390,6 +390,8 @@ https://ovp-live.akamaized.net/ac115_live/canale1.smil/playlist.m3u8
 https://ovp-live.akamaized.net/ac115_live/canale3.smil/playlist.m3u8
 #EXTINF:-1 tvg-id="" tvg-name="Casa Sanremo Tv" tvg-logo="https://i.imgur.com/WL3SFTs.png" group-title="Locali e altri",Casa Sanremo Tv
 https://router.xdevel.com/video0s975911-633/stream/playlist_dvr.m3u8
+#EXTINF:-1 tvg-id="" tvg-name="Castrovillari Tv" tvg-logo="https://i.imgur.com/V0kjYNG.png" group-title="Locali e altri",Castrovillari Tv
+http://msh0062.stream.seeweb.it/live/flv:stream00.sdp/playlist.m3u8
 #EXTINF:-1 tvg-id="" tvg-name="Cittaceleste Tv" tvg-logo="https://i.imgur.com/9RVriNK.jpeg" group-title="Locali e altri",Cittaceleste Tv
 https://sportitaliaamd.akamaized.net/live/Cittaceleste/hls/A990687F506536598442FC5CD12C97CB78873FBA/index.m3u8
 #EXTINF:-1 tvg-id="" tvg-name="Company Tv" tvg-logo="https://i.imgur.com/IbabUDd.png" group-title="Locali e altri",Company Tv
@@ -490,6 +492,10 @@ https://5db313b643fd8.streamlock.net:443/MinformoTV/MinformoTV/playlist.m3u8
 https://a-cdn.klowdtv.com/live2/nautical_720p/playlist.m3u8
 #EXTINF:-1 tvg-id="" tvg-name="NTI Canale 271" tvg-logo="https://i.imgur.com/zlmcUe0.jpg" group-title="Locali e altri",NTI Canale 271
 https://www.ntimedia.it/video/S0B/S0B_master.m3u8
+#EXTINF:-1 tvg-id="" tvg-name="Nuova Tv 1" tvg-logo="https://i.imgur.com/1yqTZhR.png" group-title="Locali e altri",Nuova Tv 1
+https://nuovatv.net:8443/tv/stream.m3u8
+#EXTINF:-1 tvg-id="" tvg-name="Nuova Tv 2" tvg-logo="https://i.imgur.com/0vauyV3.png" group-title="Locali e altri",Nuova Tv 2
+https://nuovatv.net:8443/tv2/stream.m3u8
 #EXTINF:-1 tvg-id="" tvg-name="Odeon 24" tvg-logo="https://i.imgur.com/Ho7SdXY.png" group-title="Locali e altri",Odeon 24
 #EXTVLCOPT:http-referrer=https://www.grupposciscione.it/odeon-2/#/?playlistId=0&videoId=0
 https://5f11919dca3bd.streamlock.net/odeonjump/_definst_/odeonjump/playlist.m3u8
@@ -671,6 +677,8 @@ https://antennasicilialive.cdn.netrw.it/antennasicilialive/hls/ccr/telecolor/mas
 https://stream10.xdevel.com/video14s975955-1911/stream/playlist.m3u8
 #EXTINF:-1 tvg-id="" tvg-name="Telegenova" tvg-logo="https://i.imgur.com/D6HC0So.png" group-title="Locali e altri",Telegenova
 https://64b16f23efbee.streamlock.net/telegenova/telegenova/playlist.m3u8
+#EXTINF:-1 tvg-id="" tvg-name="Teleiblea" tvg-logo="https://i.imgur.com/n1THygZ.png" group-title="Locali e altri",Teleiblea
+https://64b16f23efbee.streamlock.net/teleiblea/teleiblea/playlist.m3u8
 #EXTINF:-1 tvg-id="" tvg-name="Teleleonessa" tvg-logo="https://i.imgur.com/jq3etlV.png" group-title="Locali e altri",Teleleonessa
 http://wms.shared.streamshow.it:1935/teleleonessa/teleleonessa/live.m3u8
 #EXTINF:-1 tvg-id="" tvg-name="TeleMajg" tvg-logo="https://i.imgur.com/9tefonp.jpg" group-title="Locali e altri",TeleMajg
@@ -693,8 +701,6 @@ https://livetr.teleromagna.it/mia/live/playlist.m3u8
 http://ts2000tv.streaming.nextware.it:8081/ts2000tv/ts2000tv/playlist.m3u8
 #EXTINF:-1 tvg-id="" tvg-name="Teleuniverso" tvg-logo="https://i.imgur.com/u8E9wBb.png" group-title="Locali e altri",Teleuniverso
 https://stream.ets-sistemi.it:19360/teleuniverso/teleuniverso.m3u8
-#EXTINF:-1 tvg-id="" tvg-name="Televallo Trapani" tvg-logo="https://i.imgur.com/P6zuiRH.png" group-title="Locali e altri",Televallo Trapani
-https://64b16f23efbee.streamlock.net/televallo/televallo/playlist.m3u8
 #EXTINF:-1 tvg-id="" tvg-name="TLT Molise" tvg-logo="https://i.imgur.com/wgwD7gh.png" group-title="Locali e altri",TLT Molise
 https://5f22d76e220e1.streamlock.net/tltmolise/tltmolise/playlist.m3u8
 #EXTINF:-1 tvg-id="" tvg-name="Travel TV" tvg-logo="https://i.imgur.com/aXAUyLN.png" group-title="Locali e altri",Travel TV
