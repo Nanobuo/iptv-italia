@@ -3,9 +3,9 @@
 Aggiornato il 2026-11-01 da `genera_lista.ps1`.
 
 - **375** canali in `lista_italia.m3u`, **80** con numero LCN in `lista_nazionali.m3u`
-- **76** canali con guida EPG (7613 programmi in `guida.xml.gz`)
+- **76** canali con guida EPG (7612 programmi in `guida.xml.gz`)
 - Fonti EPG usate: epgshare01 (62), open-epg italy2 (5), open-epg italy3 (7), iptv-epg.org (2)
-- **1** canali tenuti anche se oggi non hanno risposto (tolleranza di 3 giorni)
+- **7** canali tenuti anche se oggi non hanno risposto (tolleranza di 3 giorni)
 
 ## Numeri LCN senza un flusso funzionante
 
@@ -21,63 +21,63 @@ Mediaset Italia - America · Mediaset Italia - Australia e Asia · Mediaset Ital
 
 | LCN | Canale | Gruppo | Fonte | EPG | Note |
 |---:|---|---|---|:---:|---|
-| 1 | Rai 1 | Rai | mediapolis.rai.it | ✓ |  |
-| 2 | Rai 2 | Rai | mediapolis.rai.it | ✓ |  |
-| 3 | Rai 3 | Rai | mediapolis.rai.it | ✓ |  |
-| 4 | Rete 4 | Mediaset | live02-seg.msf.cdn.mediaset.net | ✓ |  |
-| 5 | Canale 5 | Mediaset | live02-seg.msf.cdn.mediaset.net | ✓ |  |
-| 6 | Italia 1 | Mediaset | live02-seg.msf.cdn.mediaset.net | ✓ |  |
+| 1 | Rai 1 | Rai | mediapolis.rai.it | ✓ | geobloccato, non verificato |
+| 2 | Rai 2 | Rai | mediapolis.rai.it | ✓ | geobloccato, non verificato |
+| 3 | Rai 3 | Rai | mediapolis.rai.it | ✓ | geobloccato, non verificato |
+| 4 | Rete 4 | Mediaset | live02-seg.msf.cdn.mediaset.net | ✓ | geobloccato, non verificato |
+| 5 | Canale 5 | Mediaset | live02-seg.msf.cdn.mediaset.net | ✓ | geobloccato, non verificato |
+| 6 | Italia 1 | Mediaset | live02-seg.msf.cdn.mediaset.net | ✓ | geobloccato, non verificato |
 | 7 | La7 | Nazionali | d1chghleocc9sm.cloudfront.net | ✓ |  |
-| 8 | TV8 | Nazionali | hlslive-web-gcdn-skycdn-it.akamaized.net | ✓ |  |
+| 8 | TV8 | Nazionali | hlslive-web-gcdn-skycdn-it.akamaized.net | ✓ | geobloccato, non verificato |
 | 9 | Nove | Nazionali | streaming.aurora.enhanced.live | ✓ |  |
-| 20 | 20 Mediaset | Mediaset | live02-seg.msf.cdn.mediaset.net | ✓ |  |
-| 21 | Rai 4 | Rai | mediapolis.rai.it | ✓ |  |
-| 22 | Iris | Mediaset | live02-seg.msf.cdn.mediaset.net | ✓ |  |
-| 23 | Rai 5 | Rai | mediapolis.rai.it | ✓ |  |
-| 24 | Rai Movie | Rai | mediapolis.rai.it | ✓ |  |
-| 25 | Rai Premium | Rai | mediapolis.rai.it | ✓ |  |
-| 26 | Cielo | Nazionali | hlslive-web-gcdn-skycdn-it.akamaized.net | ✓ |  |
-| 27 | 27 Twentyseven | Mediaset | live02-seg.msf.cdn.mediaset.net | ✓ |  |
+| 20 | 20 Mediaset | Mediaset | live02-seg.msf.cdn.mediaset.net | ✓ | geobloccato, non verificato |
+| 21 | Rai 4 | Rai | mediapolis.rai.it | ✓ | geobloccato, non verificato |
+| 22 | Iris | Mediaset | live02-seg.msf.cdn.mediaset.net | ✓ | geobloccato, non verificato |
+| 23 | Rai 5 | Rai | mediapolis.rai.it | ✓ | geobloccato, non verificato |
+| 24 | Rai Movie | Rai | mediapolis.rai.it | ✓ | geobloccato, non verificato |
+| 25 | Rai Premium | Rai | mediapolis.rai.it | ✓ | geobloccato, non verificato |
+| 26 | Cielo | Nazionali | hlslive-web-gcdn-skycdn-it.akamaized.net | ✓ | geobloccato, non verificato |
+| 27 | 27 Twentyseven | Mediaset | live02-seg.msf.cdn.mediaset.net | ✓ | geobloccato, non verificato |
 | 28 | TV 2000 | Nazionali | hls-live-tv2000.akamaized.net | ✓ |  |
 | 29 | La7 Cinema | Nazionali | 102.129.186.182 | ✓ |  |
-| 30 | La 5 | Mediaset | live02-seg.msf.cdn.mediaset.net | ✓ |  |
+| 30 | La 5 | Mediaset | live02-seg.msf.cdn.mediaset.net | ✓ | geobloccato, non verificato |
 | 31 | Real Time | Nazionali | streaming.aurora.enhanced.live | ✓ |  |
 | 32 | QVC | Nazionali | qrg.akamaized.net | ✓ |  |
 | 33 | Food Network | Nazionali | streaming.aurora.enhanced.live | ✓ |  |
-| 34 | Cine34 | Mediaset | live02-seg.msf.cdn.mediaset.net | ✓ |  |
-| 35 | Focus | Mediaset | live02-seg.msf.cdn.mediaset.net | ✓ |  |
+| 34 | Cine34 | Mediaset | live02-seg.msf.cdn.mediaset.net | ✓ | geobloccato, non verificato |
+| 35 | Focus | Mediaset | live02-seg.msf.cdn.mediaset.net | ✓ | geobloccato, non verificato |
 | 36 | RTL 102.5 | Musica e Radiovisione | dd782ed59e2a4e86aabf6fc508674b59.msvdn.net | ✓ |  |
 | 37 | Discovery Channel | Nazionali | streaming.aurora.enhanced.live | ✓ |  |
 | 38 | Giallo | Nazionali | streaming.aurora.enhanced.live | ✓ |  |
-| 39 | Top Crime | Mediaset | live02-seg.msf.cdn.mediaset.net | ✓ |  |
-| 40 | BOING | Mediaset | live02-seg.msf.cdn.mediaset.net | ✓ |  |
+| 39 | Top Crime | Mediaset | live02-seg.msf.cdn.mediaset.net | ✓ | geobloccato, non verificato |
+| 40 | BOING | Mediaset | live02-seg.msf.cdn.mediaset.net | ✓ | geobloccato, non verificato |
 | 41 | K2 | Nazionali | d1pmpe0hs35ka5.cloudfront.net | ✓ |  |
-| 42 | Rai Gulp | Rai | mediapolis.rai.it | ✓ |  |
-| 43 | Rai YoYo | Rai | mediapolis.rai.it | ✓ |  |
+| 42 | Rai Gulp | Rai | mediapolis.rai.it | ✓ | geobloccato, non verificato |
+| 43 | Rai YoYo | Rai | mediapolis.rai.it | ✓ | geobloccato, non verificato |
 | 44 | Frisbee | Bambini | d6m7lubks416z.cloudfront.net | ✓ |  |
-| 46 | Cartoonito | Mediaset | live02-seg.msf.cdn.mediaset.net | ✓ |  |
+| 46 | Cartoonito | Mediaset | live02-seg.msf.cdn.mediaset.net | ✓ | geobloccato, non verificato |
 | 47 | Super! | Nazionali | 495c5a85d9074f29acffeaea9e0215eb.msvdn.net | ✓ |  |
-| 48 | Rai News 24 | Rai | mediapolis.rai.it | ✓ |  |
-| 49 | Italia 2 | Mediaset | live02-seg.msf.cdn.mediaset.net | ✓ |  |
-| 50 | Sky TG24 | Notizie | hlslive-web-gcdn-skycdn-it.akamaized.net | ✓ |  |
-| 51 | TGCOM 24 | Mediaset | live02-seg.msf.cdn.mediaset.net | ✓ |  |
+| 48 | Rai News 24 | Rai | mediapolis.rai.it | ✓ | geobloccato, non verificato |
+| 49 | Italia 2 | Mediaset | live02-seg.msf.cdn.mediaset.net | ✓ | geobloccato, non verificato |
+| 50 | Sky TG24 | Notizie | hlslive-web-gcdn-skycdn-it.akamaized.net | ✓ | geobloccato, non verificato |
+| 51 | TGCOM 24 | Mediaset | live02-seg.msf.cdn.mediaset.net | ✓ | geobloccato, non verificato |
 | 52 | DMAX | Nazionali | streaming.aurora.enhanced.live | ✓ |  |
-| 54 | Rai Storia | Rai | mediapolis.rai.it | ✓ |  |
-| 55 | Mediaset Extra | Mediaset | live02-seg.msf.cdn.mediaset.net | ✓ |  |
+| 54 | Rai Storia | Rai | mediapolis.rai.it | ✓ | geobloccato, non verificato |
+| 55 | Mediaset Extra | Mediaset | live02-seg.msf.cdn.mediaset.net | ✓ | geobloccato, non verificato |
 | 56 | HGTV – Home & Garden Tv | Nazionali | streaming.aurora.enhanced.live | ✓ |  |
-| 58 | Rai Sport | Rai | mediapolis.rai.it | ✓ |  |
+| 58 | Rai Sport | Rai | mediapolis.rai.it | ✓ | geobloccato, non verificato |
 | 59 | Turbo | Nazionali | streaming.aurora.enhanced.live | ✓ |  |
 | 60 | Sportitalia Plus | Sport | sportsitalia-samsungitaly.amagi.tv | ✓ |  |
-| 64 | SuperTennis | Sport | live-embed.supertennix.hiway.media | ✓ |  |
-| 65 | Alma TV | Nazionali | 5f11919dca3bd.streamlock.net | ✓ |  |
-| 66 | Radio 105 TV | Musica e Radiovisione | live02-seg.msr.cdn.mediaset.net | ✓ |  |
-| 67 | R101 TV | Nazionali | live02-seg.msr.cdn.mediaset.net | ✓ |  |
+| 64 | SuperTennis | Sport | live-embed.supertennix.hiway.media | ✓ | non ha risposto oggi |
+| 65 | Alma TV | Nazionali | 5f11919dca3bd.streamlock.net | ✓ | non ha risposto oggi |
+| 66 | Radio 105 TV | Musica e Radiovisione | live02-seg.msr.cdn.mediaset.net | ✓ | geobloccato, non verificato |
+| 67 | R101 TV | Nazionali | live02-seg.msr.cdn.mediaset.net | ✓ | geobloccato, non verificato |
 | 68 | BOM Channel | Nazionali | 5f22d76e220e1.streamlock.net |  |  |
 | 69 | Deejay TV | Musica e Radiovisione | 4c4b867c89244861ac216426883d1ad0.msvdn.net | ✓ |  |
 | 70 | RadioItaliaTV | Musica e Radiovisione | radioitaliatv.akamaized.net | ✓ |  |
-| 101 | Rai 4K | Rai | raievent10-elem-live.akamaized.net | ✓ |  |
+| 101 | Rai 4K | Rai | raievent10-elem-live.akamaized.net | ✓ | geobloccato, non verificato |
 | 145 | Padre Pio Tv | Nazionali | 600f07e114306.streamlock.net |  |  |
-| 151 | EQUtv | Nazionali | ippicabetflag-live.morescreens.com | ✓ |  |
+| 151 | EQUtv | Nazionali | ippicabetflag-live.morescreens.com | ✓ | non ha risposto oggi |
 | 157 | Fascino Tv | Nazionali | 64b16f23efbee.streamlock.net |  |  |
 | 158 | Radio KISS KISS TV | Musica e Radiovisione | kk.fluid.stream |  |  |
 | 202 | Rai Radio 2 Visual Radio | Rai | mediapolis.rai.it |  |  |
@@ -98,14 +98,14 @@ Mediaset Italia - America · Mediaset Italia - Australia e Asia · Mediaset Ital
 | 741 | RTL 102.5 Napule | Musica e Radiovisione | dd782ed59e2a4e86aabf6fc508674b59.msvdn.net |  |  |
 | 742 | RTL 102.5 Disco | Musica e Radiovisione | dd782ed59e2a4e86aabf6fc508674b59.msvdn.net |  |  |
 | 744 | RTL 102.5 Bro&Sis | Musica e Radiovisione | dd782ed59e2a4e86aabf6fc508674b59.msvdn.net |  |  |
-| 828 | Class CNBC | Nazionali | amg14891-amg14891c5-amgplt0020.playout.now3.amagi.tv | ✓ |  |
+| 828 | Class CNBC | Nazionali | amg14891-amg14891c5-amgplt0020.playout.now3.amagi.tv | ✓ | geobloccato, non verificato |
 | 833 | Super Six | Nazionali | 5db313b643fd8.streamlock.net |  |  |
 | 888 | Caccia e Pesca | Nazionali | 102.129.186.182 | ✓ |  |
 |  | Rai Italia Asia e Australia | Rai | d3k8wzt41aflvx.cloudfront.net |  |  |
 |  | Rai Italia Europa e Africa | Rai | d3k8wzt41aflvx.cloudfront.net |  |  |
 |  | Rai Italia Nord America | Rai | d3k8wzt41aflvx.cloudfront.net |  |  |
 |  | Rai Italia Sud America | Rai | d3k8wzt41aflvx.cloudfront.net |  |  |
-|  | Rai Scuola | Rai | mediapolis.rai.it | ✓ |  |
+|  | Rai Scuola | Rai | mediapolis.rai.it | ✓ | geobloccato, non verificato |
 |  | Rai Sudtirol | Rai | wzstreaming.rai.it |  |  |
 |  | Rai World Premium | Rai | d3k8wzt41aflvx.cloudfront.net |  |  |
 |  | Mediaset Italia - America | Mediaset | d3k8wzt41aflvx.cloudfront.net | ✓ |  |
@@ -126,7 +126,7 @@ Mediaset Italia - America · Mediaset Italia - Australia e Asia · Mediaset Ital
 |  | Radio TV Serie A | Sport | legaseriea-live-prd.cdn.netrw.it |  |  |
 |  | Rete 8 Sport | Sport | 64b16f23efbee.streamlock.net |  |  |
 |  | San Marino RTV Sport | Sport | d2hrvno5bw6tg2.cloudfront.net |  |  |
-|  | Sportitalia SOLOCALCIO | Sport | distribution.sportitalialive.it |  |  |
+|  | Sportitalia SOLOCALCIO | Sport | distribution.sportitalialive.it |  | geobloccato, non verificato |
 |  | 51 Radio TV | Musica e Radiovisione | wms.shared.streamshow.it |  |  |
 |  | 7 RadioVisione | Musica e Radiovisione | stream10.xdevel.com |  |  |
 |  | Giornale Radio Tv | Musica e Radiovisione | 5f204aff97bee.streamlock.net |  |  |
@@ -143,7 +143,7 @@ Mediaset Italia - America · Mediaset Italia - Australia e Asia · Mediaset Ital
 |  | Radio Digiesse TV | Musica e Radiovisione | w1.mediastreaming.it |  |  |
 |  | Radio Ibiza | Musica e Radiovisione | str48.fluid.stream |  |  |
 |  | Radio Iglesias | Musica e Radiovisione | wms.shared.streamshow.it |  |  |
-|  | Radio Iglesias Visual Radio | Musica e Radiovisione | 59d7d6f47d7fc.streamlock.net |  |  |
+|  | Radio Iglesias Visual Radio | Musica e Radiovisione | 59d7d6f47d7fc.streamlock.net |  | non ha risposto oggi |
 |  | Radio Immagine Tv | Musica e Radiovisione | media.velcom.it |  |  |
 |  | Radio Italia Cina Tv | Musica e Radiovisione | 585b674743bbb.streamlock.net |  |  |
 |  | Radio Juke Box TV | Musica e Radiovisione | 5926fc9c7c5b2.streamlock.net |  |  |
@@ -152,7 +152,7 @@ Mediaset Italia - America · Mediaset Italia - Australia e Asia · Mediaset Ital
 |  | Radio Libertà | Musica e Radiovisione | router.xdevel.com |  |  |
 |  | Radio m2o Tv | Musica e Radiovisione | 4c4b867c89244861ac216426883d1ad0.msvdn.net |  |  |
 |  | Radio Monte Kronio Tv | Musica e Radiovisione | 648026e87a75e.streamlock.net |  |  |
-|  | Radio Montecarlo TV | Musica e Radiovisione | live02-seg.msr.cdn.mediaset.net | ✓ |  |
+|  | Radio Montecarlo TV | Musica e Radiovisione | live02-seg.msr.cdn.mediaset.net | ✓ | geobloccato, non verificato |
 |  | Radio Napoli Emme | Musica e Radiovisione | rtmp.streams.ovh |  |  |
 |  | Radio Norba Tv | Musica e Radiovisione | router.xdevel.com | ✓ |  |
 |  | Radio Number One TV | Musica e Radiovisione | 56b50ada2d659.streamlock.net |  |  |
@@ -175,7 +175,7 @@ Mediaset Italia - America · Mediaset Italia - Australia e Asia · Mediaset Ital
 |  | TRL Tele Radio Leo | Musica e Radiovisione | 5db313b643fd8.streamlock.net |  |  |
 |  | TRSP Tele Radio San Pietro | Musica e Radiovisione | 5a1178b42cc03.streamlock.net |  |  |
 |  | Vintage Radio Tv | Musica e Radiovisione | 5f22d76e220e1.streamlock.net |  |  |
-|  | Virgin Radio TV | Musica e Radiovisione | live02-seg.msr.cdn.mediaset.net | ✓ |  |
+|  | Virgin Radio TV | Musica e Radiovisione | live02-seg.msr.cdn.mediaset.net | ✓ | geobloccato, non verificato |
 |  | Visual Radio | Musica e Radiovisione | wms.shared.streamshow.it |  |  |
 |  | Camera dei Deputati | Istituzionali | video-ar.radioradicale.it |  |  |
 |  | Senato TV | Istituzionali | senato-live.morescreens.com |  |  |
@@ -249,7 +249,7 @@ Mediaset Italia - America · Mediaset Italia - Australia e Asia · Mediaset Ital
 |  | Lab Tv | Locali e altri | customer-yzibk50951uq418a.cloudflarestream.com |  |  |
 |  | LaC Tv Calabria | Locali e altri | f5842579ff984c1c98d63b8d789673eb.msvdn.net |  |  |
 |  | L'altro Corriere TV | Locali e altri | 52ee6512fee4427889eba89957975fa0.msvdn.net |  |  |
-|  | Lazio Style Channel HD | Locali e altri | distribution.sportitalialive.it |  |  |
+|  | Lazio Style Channel HD | Locali e altri | distribution.sportitalialive.it |  | non ha risposto oggi |
 |  | Lazio Tv | Locali e altri | 5f11919dca3bd.streamlock.net |  |  |
 |  | Le Cronache Lucane Tv | Locali e altri | stucazz.com |  |  |
 |  | Le Cronache TV | Locali e altri | 77.68.40.210 |  |  |
@@ -264,7 +264,7 @@ Mediaset Italia - America · Mediaset Italia - Australia e Asia · Mediaset Ital
 |  | NTI Canale 271 | Locali e altri | www.ntimedia.it |  |  |
 |  | Nuova Tv 1 | Locali e altri | nuovatv.net |  |  |
 |  | Nuova Tv 2 | Locali e altri | nuovatv.net |  |  |
-|  | Nuova TV Nazionale | Locali e altri | stream4.xdevel.com |  |  |
+|  | Nuova TV Nazionale | Locali e altri | stream4.xdevel.com |  | non ha risposto oggi |
 |  | Nuvola Tv | Locali e altri | stream.nuvola.tv |  |  |
 |  | Odeon 24 | Locali e altri | 5f11919dca3bd.streamlock.net |  |  |
 |  | Onda Novara Tv | Locali e altri | 585b674743bbb.streamlock.net |  |  |
@@ -324,8 +324,8 @@ Mediaset Italia - America · Mediaset Italia - Australia e Asia · Mediaset Ital
 |  | Tele Boario | Locali e altri | stream7.xdevel.com |  |  |
 |  | Tele Bruzzano | Locali e altri | playerssl.telemia.tv |  |  |
 |  | Tele Chiara | Locali e altri | fms.tvavicenza.it |  |  |
-|  | Tele Club Italia | Locali e altri | www.theclubfactory.com |  |  |
-|  | Tele Cupole | Locali e altri | load-balancer.azotosolutions.com |  | non ha risposto oggi |
+|  | Tele Club Italia | Locali e altri | www.theclubfactory.com |  | non ha risposto oggi |
+|  | Tele Cupole | Locali e altri | load-balancer.azotosolutions.com |  |  |
 |  | Tele Foggia | Locali e altri | 59d7d6f47d7fc.streamlock.net |  |  |
 |  | Tele Friuli | Locali e altri | 5757bf2aa08e42248fb9b9d620f5d900.msvdn.net |  |  |
 |  | Tele Gela | Locali e altri | 64b16f23efbee.streamlock.net |  |  |
@@ -385,7 +385,7 @@ Mediaset Italia - America · Mediaset Italia - Australia e Asia · Mediaset Ital
 |  | TVL | Locali e altri | oj7lnw79lg82-hls-live.mariatvcdn.it |  |  |
 |  | Tvrs Tv | Locali e altri | cdn8.streamshow.it |  |  |
 |  | Umbria Tv | Locali e altri | umbriatv.stream.rubidia.it |  |  |
-|  | UniNettuno University TV | Locali e altri | stream6-rai-it.akamaized.net |  |  |
+|  | UniNettuno University TV | Locali e altri | stream6-rai-it.akamaized.net |  | geobloccato, non verificato |
 |  | Uno4 Tv | Locali e altri | cdn.uno4.it |  |  |
 |  | Value 24 TV | Locali e altri | 5f22d76e220e1.streamlock.net |  |  |
 |  | Vera Tv | Locali e altri | cdn9.streamshow.it |  |  |
