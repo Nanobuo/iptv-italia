@@ -4,20 +4,34 @@
   Sorgenti:
     - Free-TV/IPTV  (solo canali free-to-air, flussi ufficiali)  https://github.com/Free-TV/IPTV
     - iptv-org/iptv (canali italiani pubblici, integrazione)     https://github.com/iptv-org/iptv
-    - EPG epgshare01 Italia                                      https://epgshare01.online
+    - EPG: epgshare01 (principale), open-epg.com e iptv-epg.org (integrazione)
+      (open-epg italy1 e italy4 esclusi: un solo programma per canale, o quasi nessun canale con programmi)
 
-  Uso:  powershell -ExecutionPolicy Bypass -File genera_lista.ps1 [-Uscita lista_italia.m3u] [-NoCheck] [-Backup] [-TieniGeo]
+  File generati (accanto allo script, salvo diversa indicazione):
+    lista_italia.m3u     tutti i canali
+    lista_nazionali.m3u  solo i canali con numero LCN nazionale
+    guida.xml.gz         guida EPG dei soli canali in lista, unendo tutte le fonti
+    STATO.md             rapporto sullo stato dei canali
+    stato.json           ultima data in cui ogni flusso ha risposto (per la tolleranza)
+
+  Uso:  powershell -ExecutionPolicy Bypass -File genera_lista.ps1 [-NoCheck] [-Backup] [-TieniGeo]
     -NoCheck   salta la verifica dei flussi (più veloce, ma include link morti)
     -Backup    tiene anche i flussi alternativi funzionanti dello stesso canale
     -TieniGeo  non verifica i flussi geobloccati (visibili solo dall'Italia) e li tiene comunque:
                da usare quando lo script gira fuori dall'Italia (es. GitHub Actions)
+    -GiorniTolleranza  un flusso che non risponde resta in lista se ha funzionato negli ultimi N giorni
     -MinCanali se la lista risultante ha meno canali di così, non la scrive (sorgenti irraggiungibili)
 #>
 param(
   [string]$Uscita = (Join-Path $PSScriptRoot 'lista_italia.m3u'),
+  [string]$UscitaNazionali = (Join-Path $PSScriptRoot 'lista_nazionali.m3u'),
+  [string]$Guida = (Join-Path $PSScriptRoot 'guida.xml.gz'),
+  [string]$Rapporto = (Join-Path $PSScriptRoot 'STATO.md'),
+  [string]$Stato = (Join-Path $PSScriptRoot 'stato.json'),
   [switch]$NoCheck,
   [switch]$Backup,
   [switch]$TieniGeo,
+  [int]$GiorniTolleranza = 3,
   [int]$MinCanali = 150,
   [int]$Timeout = 10,
   [int]$Paralleli = 24
@@ -28,12 +42,21 @@ $ErrorActionPreference = 'Stop'
 
 $FONTE_FREETV = 'https://raw.githubusercontent.com/Free-TV/IPTV/master/playlists/playlist_italy.m3u8'
 $FONTE_IPTVORG = 'https://iptv-org.github.io/iptv/countries/it.m3u'
-$EPG_URL = 'https://epgshare01.online/epgshare01/epg_ripper_IT1.xml.gz'
+# La prima fonte EPG è la principale (obbligatoria); le altre coprono solo i canali che la prima non ha.
+$FONTI_EPG = @(
+  @{ Nome = 'epgshare01'; Url = 'https://epgshare01.online/epgshare01/epg_ripper_IT1.xml.gz' }
+  @{ Nome = 'open-epg italy2'; Url = 'https://www.open-epg.com/files/italy2.xml' }
+  @{ Nome = 'open-epg italy3'; Url = 'https://www.open-epg.com/files/italy3.xml' }
+  @{ Nome = 'iptv-epg.org'; Url = 'https://iptv-epg.org/files/epg-it.xml.gz' }
+)
+# guida.xml.gz è pubblicata come file della release "dati" del repository (vedi workflow)
+$GUIDA_URL = 'https://github.com/Nanobuo/iptv-italia/releases/download/dati/guida.xml.gz'
 $UA = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0 Safari/537.36'
 
 # Numerazione LCN nazionale del digitale terrestre (fonte: Wikipedia, "Servizi televisivi digitali
 # terrestri nazionali in Italia", ottobre 2026). Ogni numero ha uno o più nomi con cui il canale
 # compare nelle sorgenti. I canali locali (LCN 10-19, 71-99, 600+) cambiano per regione: restano senza numero.
+# STATO.md segnala i canali con guida ma senza numero: candidati da aggiungere qui.
 $LCN = @{
   1 = 'Rai 1'; 2 = 'Rai 2'; 3 = 'Rai 3'; 4 = 'Rete 4'; 5 = 'Canale 5'; 6 = 'Italia 1'; 7 = 'La7'; 8 = 'TV8'; 9 = 'Nove'
   20 = '20 Mediaset', '20'; 21 = 'Rai 4'; 22 = 'Iris'; 23 = 'Rai 5'; 24 = 'Rai Movie'; 25 = 'Rai Premium'; 26 = 'Cielo'
@@ -51,22 +74,33 @@ $LCN = @{
   246 = 'Radio 24 TV', 'Radio24-IlSole24OreTV'; 247 = 'BeJoy Kids'; 253 = 'Radio Radio TV'; 255 = 'Maria Vision'
   257 = 'Gambero Rosso'; 258 = 'RadioFreccia'; 265 = 'RDS Social TV'; 266 = 'Radio Zeta'; 550 = 'San Marino RTV', 'RTV San Marino'
   739 = 'RTL 102.5 Traffic'; 740 = 'RTL 102.5 Best'; 741 = 'RTL 102.5 Napule'; 742 = 'RTL 102.5 Disco'
-  744 = 'RTL 102.5 Bro&Sis'; 828 = 'Class CNBC'; 833 = 'SuperSix'
+  744 = 'RTL 102.5 Bro&Sis'; 828 = 'Class CNBC'; 833 = 'SuperSix'; 441 = 'Italian Fishing TV'; 888 = 'Caccia e Pesca'
 }
 
 function Scarica([string]$url) {
   $wc = New-Object Net.WebClient
   $wc.Headers['User-Agent'] = $UA
-  $wc.DownloadData($url)
+  $b = $wc.DownloadData($url)
+  if ($b.Length -gt 2 -and $b[0] -eq 0x1f -and $b[1] -eq 0x8b) {   # gzip
+    $gz = New-Object IO.Compression.GZipStream((New-Object IO.MemoryStream(, $b)), [IO.Compression.CompressionMode]::Decompress)
+    $ms = New-Object IO.MemoryStream; $gz.CopyTo($ms); $b = $ms.ToArray()
+  }
+  , $b
 }
 
 function Normalizza([string]$s) {
   $s = $s.ToLowerInvariant()
+  $s = [regex]::Replace($s, '^[a-z]{2} - ', '')             # prefisso paese di alcune guide ("IT - Canale 5")
   $s = [regex]::Replace($s, '\(.*?\)|\[.*?\]', '')          # (1080p) [Not 24/7]
   $s = [regex]::Replace($s, '[Ⓐ-ⓩ]', '')          # marcatori Free-TV (geo, youtube...)
   $s = [regex]::Replace($s, '\.(it|va|sm|ch|fr|de)(@.*)?$', '')
   $s = [regex]::Replace($s, '\b(hd|fhd|uhd|sd|tv|channel)\b', ' ')
   [regex]::Replace($s, '[^a-z0-9]', '')
+}
+
+# variante che non scarta parole come "tv": distingue "TV 2000" da "2000"
+function Sciolto([string]$s) {
+  [regex]::Replace([regex]::Replace($s.ToLowerInvariant(), '^[a-z]{2} - ', ''), '[^a-z0-9]', '')
 }
 
 function Leggi-M3U([byte[]]$dati, [string]$fonte) {
@@ -117,13 +151,31 @@ function Categoria($v, [bool]$haEpg, [int]$lcn) {
   if ($lcn -lt 9999 -or $haEpg) { 'Nazionali' } else { 'Locali e altri' }
 }
 
+function Scrivi-M3U([string]$file, $canali) {
+  $righe = New-Object Collections.Generic.List[string]
+  $righe.Add("#EXTM3U x-tvg-url=`"$GUIDA_URL`" url-tvg=`"$GUIDA_URL`"")
+  foreach ($c in $canali) {
+    $n = 0
+    foreach ($f in $c.Flussi) {
+      $titolo = if ($n -eq 0) { $c.Nome } else { "$($c.Nome) (backup $n)" }
+      $a = "tvg-id=`"$($c.Epg)`" tvg-name=`"$titolo`""
+      if ($c.Chno -lt 9999 -and $n -eq 0) { $a += " tvg-chno=`"$($c.Chno)`"" }
+      if ($c.Logo) { $a += " tvg-logo=`"$($c.Logo)`"" }
+      $righe.Add("#EXTINF:-1 $a group-title=`"$($c.Cat)`",$titolo")
+      foreach ($o in $f.Opz) { $righe.Add($o) }
+      $righe.Add($f.Url); $n++
+    }
+  }
+  [IO.File]::WriteAllLines($file, $righe, (New-Object Text.UTF8Encoding($false)))
+}
+
 # Fonti scelte a mano, che hanno la precedenza su quelle delle playlist sorgente.
 # Rai 2: relinker ufficiale, fissato qui per non perderlo se sparisce dalle sorgenti.
 $FONTI_FISSE = @(
   @{ Nome = 'Rai 2'; Id = 'Rai2.it'; Url = 'https://mediapolis.rai.it/relinker/relinkerServlet.htm?cont=308718&output=7&forceUserAgent=raiplayappletv' }
 )
 
-Write-Host '1/4  Scarico le playlist sorgente...'
+Write-Host '1/5  Scarico le playlist sorgente...'
 $voci = @()
 foreach ($f in $FONTI_FISSE) {
   $voci += [pscustomobject]@{ Nome = $f.Nome; Attr = @{ 'tvg-id' = $f.Id; 'tvg-name' = $f.Nome }; Opz = @(); Url = $f.Url; Fonte = 'fissa'; UA = $null; Referer = $null; Geo = $true }
@@ -145,6 +197,7 @@ foreach ($v in $voci) {
               elseif ($v.Url -match '^https?://([\w-]+\.)*(rai\.it|mediaset\.net|la7\.it)/') { 1 }
               else { 2 }
   $v | Add-Member Priorita $priorita
+  $v | Add-Member Nota ''
   if ($v.Url -match 'mediapolis\.rai\.it/relinker') {
     # modalità Apple TV: offre 1080p dove Rai lo trasmette (Rai 1, 2, 3, Sport); per gli altri resta 720p
     $v.Url = if ($v.Url -match 'forceUserAgent=') { $v.Url -replace 'forceUserAgent=[^&]*', 'forceUserAgent=raiplayappletv' } else { "$($v.Url)&forceUserAgent=raiplayappletv" }
@@ -154,38 +207,67 @@ foreach ($v in $voci) {
 $voci = $voci | Sort-Object Priorita, Indice
 Write-Host "     $($voci.Count) flussi candidati"
 
-Write-Host '2/4  Scarico e indicizzo la guida EPG...'
-$gz = New-Object IO.Compression.GZipStream((New-Object IO.MemoryStream(, (Scarica $EPG_URL))), [IO.Compression.CompressionMode]::Decompress)
-$xml = [xml](New-Object IO.StreamReader($gz, [Text.Encoding]::UTF8)).ReadToEnd()
-$epgIds = @{}; $epgNomi = @{}
-foreach ($c in $xml.tv.channel) {
-  $epgIds[$c.id] = $true
-  $k = Normalizza $c.id; if ($k -and -not $epgNomi.ContainsKey($k)) { $epgNomi[$k] = $c.id }
-  foreach ($dn in @($c.'display-name')) {
-    $t = if ($dn -is [string]) { $dn } else { $dn.'#text' }
-    $k = Normalizza $t; if ($k -and -not $epgNomi.ContainsKey($k)) { $epgNomi[$k] = $c.id }
+Write-Host '2/5  Scarico e indicizzo le guide EPG...'
+# si tengono i programmi da 12 ore fa in poi; un canale senza programmi futuri non conta come coperto
+$limite = (Get-Date).ToUniversalTime().AddHours(-12).ToString('yyyyMMddHHmmss')
+$guide = @()
+for ($g = 0; $g -lt $FONTI_EPG.Count; $g++) {
+  try { $xml = [xml][Text.Encoding]::UTF8.GetString((Scarica $FONTI_EPG[$g].Url)).TrimStart([char]0xFEFF) }
+  catch { if ($g -eq 0) { throw }; Write-Host "     $($FONTI_EPG[$g].Nome): non disponibile, salto"; continue }
+  $conProg = @{}
+  foreach ($p in $xml.tv.programme) { if (-not $p.stop -or $p.stop.Substring(0, 14) -ge $limite) { $conProg[$p.channel] = $true } }
+  $ids = @{}; $nomi = @{}
+  foreach ($c in $xml.tv.channel) {
+    if (-not $conProg.ContainsKey($c.id)) { continue }   # canali senza programmi: inutili
+    $ids[$c.id] = $true
+    $chiavi = @((Normalizza $c.id))
+    foreach ($dn in @($c.'display-name')) { $t = if ($dn -is [string]) { $dn } else { $dn.'#text' }; $chiavi += (Normalizza $t); $chiavi += (Sciolto $t) }
+    foreach ($k in $chiavi) { if ($k -and -not $nomi.ContainsKey($k)) { $nomi[$k] = $c.id } }
   }
+  $guide += [pscustomobject]@{ Indice = $g; Nome = $FONTI_EPG[$g].Nome; Xml = $xml; Ids = $ids; Nomi = $nomi }
+  Write-Host "     $($FONTI_EPG[$g].Nome): $($ids.Count) canali"
 }
 foreach ($v in $voci) {
-  $id = $v.Attr['tvg-id']
-  if ($id -and $epgIds.ContainsKey($id)) { $v | Add-Member EpgId $id; continue }
-  $trovato = $null
-  foreach ($k in @((Normalizza $v.Nome), (Normalizza $id), (Normalizza $v.Attr['tvg-name']))) {
-    if ($k -and $epgNomi.ContainsKey($k)) { $trovato = $epgNomi[$k]; break }
+  $id = $v.Attr['tvg-id']; $trovato = $null; $fonte = $null
+  $principale = $guide[0]
+  if ($id -and $principale.Ids.ContainsKey($id)) { $trovato = $id; $fonte = $principale }
+  if (-not $trovato) {
+    foreach ($k in @((Normalizza $v.Nome), (Normalizza $id), (Normalizza $v.Attr['tvg-name']))) {
+      if ($k -and $principale.Nomi.ContainsKey($k)) { $trovato = $principale.Nomi[$k]; $fonte = $principale; break }
+    }
   }
   if (-not $trovato) {
-    # corrispondenza approssimata: "tgcom24" -> "tgcom", "twentyseven" -> "27twentyseven"
+    # corrispondenza approssimata nella guida principale: "tgcom24" -> "tgcom", "twentyseven" -> "27twentyseven"
     $n = Normalizza $v.Nome
     if ($n.Length -ge 5) {
-      $trovato = $epgNomi.Keys | Where-Object { $_.Length -ge 5 -and (($n -match ('^' + [regex]::Escape($_) + '\d+$')) -or $_.EndsWith($n)) } |
-        Sort-Object Length -Descending | Select-Object -First 1 | ForEach-Object { $epgNomi[$_] }
+      $trovato = $principale.Nomi.Keys | Where-Object { $_.Length -ge 5 -and (($n -match ('^' + [regex]::Escape($_) + '\d+$')) -or $_.EndsWith($n)) } |
+        Sort-Object Length -Descending | Select-Object -First 1 | ForEach-Object { $principale.Nomi[$_] }
+      if ($trovato) { $fonte = $principale }
+    }
+  }
+  if (-not $trovato) {
+    # guide di integrazione, solo corrispondenza esatta del nome
+    foreach ($gu in ($guide | Select-Object -Skip 1)) {
+      foreach ($k in @((Normalizza $v.Nome), (Sciolto $v.Nome), (Normalizza $v.Attr['tvg-name']))) {
+        if ($k -and $gu.Nomi.ContainsKey($k)) { $trovato = $gu.Nomi[$k]; $fonte = $gu; break }
+      }
+      if ($trovato) { break }
     }
   }
   $v | Add-Member EpgId $trovato
+  $v | Add-Member EpgGuida $(if ($fonte) { $fonte.Indice } else { -1 })
+}
+
+# stato.json: per ogni URL, l'ultima data in cui il flusso ha risposto
+$oggi = (Get-Date).Date
+$statoUrl = @{}
+if (Test-Path $Stato) {
+  $j = Get-Content $Stato -Raw -Encoding UTF8 | ConvertFrom-Json
+  foreach ($p in $j.PSObject.Properties) { $statoUrl[$p.Name] = [datetime]::ParseExact($p.Value, 'yyyy-MM-dd', $null) }
 }
 
 if (-not $NoCheck) {
-  Write-Host "3/4  Verifico i flussi ($Paralleli in parallelo, timeout ${Timeout}s)..."
+  Write-Host "3/5  Verifico i flussi ($Paralleli in parallelo, timeout ${Timeout}s)..."
   $verifica = {
     param($url, $ua, $ref, $timeout)
     try {
@@ -204,63 +286,128 @@ if (-not $NoCheck) {
   }
   $pool = [RunspaceFactory]::CreateRunspacePool(1, $Paralleli); $pool.Open()
   $jobs = foreach ($v in $voci) {
-    if ($TieniGeo -and $v.Geo) { $v | Add-Member Ok $true; continue }
+    if ($TieniGeo -and $v.Geo) { $v | Add-Member Ok $true; $v.Nota = 'geobloccato, non verificato'; continue }
     $ps = [PowerShell]::Create().AddScript($verifica).AddArgument($v.Url).AddArgument($(if ($v.UA) { $v.UA } else { $UA })).AddArgument($v.Referer).AddArgument($Timeout)
     $ps.RunspacePool = $pool
     [pscustomobject]@{ V = $v; PS = $ps; H = $ps.BeginInvoke() }
   }
-  $i = 0
+  $i = 0; $tollerati = 0
   foreach ($j in $jobs) {
     $ok = $false; try { $ok = [bool]($j.PS.EndInvoke($j.H) | Select-Object -Last 1) } catch {}
+    $u = $j.V.Url
+    if ($ok) { $statoUrl[$u] = $oggi }
+    elseif ($statoUrl.ContainsKey($u) -and ($oggi - $statoUrl[$u]).Days -le $GiorniTolleranza) {
+      # ha funzionato di recente: probabilmente un guasto temporaneo, resta in lista
+      $giorni = ($oggi - $statoUrl[$u]).Days
+      $ok = $true; $tollerati++
+      $j.V.Nota = if ($giorni -le 1) { 'non ha risposto oggi' } else { "non risponde da $giorni giorni" }
+    }
     $j.V | Add-Member Ok $ok; $j.PS.Dispose(); $i++
     if ($i % 50 -eq 0) { Write-Host "     $i/$($jobs.Count)" }
   }
   $pool.Close()
   $voci = $voci | Where-Object { $_.Ok }
-  Write-Host "     $($voci.Count) flussi funzionanti"
-} else { Write-Host '3/4  Verifica flussi saltata (-NoCheck)' }
+  Write-Host "     $($voci.Count) flussi tenuti, di cui $tollerati per tolleranza"
+  # dimentica gli URL che non rispondono da più di 30 giorni
+  $salva = [ordered]@{}
+  foreach ($u in ($statoUrl.Keys | Sort-Object)) { if (($oggi - $statoUrl[$u]).Days -le 30) { $salva[$u] = $statoUrl[$u].ToString('yyyy-MM-dd') } }
+  [IO.File]::WriteAllText($Stato, ($salva | ConvertTo-Json), (New-Object Text.UTF8Encoding($false)))
+} else { Write-Host '3/5  Verifica flussi saltata (-NoCheck)' }
 
-Write-Host '4/4  Deduplico e scrivo la playlist...'
+Write-Host '4/5  Deduplico i canali e compongo la guida...'
 $canali = [ordered]@{}; $perNome = @{}; $urlVisti = @{}
 foreach ($v in $voci) {   # già ordinati per preferenza: a parità di canale vince il primo
   if ($urlVisti.ContainsKey($v.Url)) { continue }   # stesso flusso già usato da un altro canale
   $urlVisti[$v.Url] = $true
   $nk = Normalizza $v.Nome
-  $k = if ($v.EpgId) { "epg:$($v.EpgId)" } elseif ($perNome.ContainsKey($nk)) { $perNome[$nk] } else { "n:$nk" }
+  $k = if ($v.EpgId) { "epg:$($v.EpgGuida):$($v.EpgId)" } elseif ($perNome.ContainsKey($nk)) { $perNome[$nk] } else { "n:$nk" }
   if (-not $perNome.ContainsKey($nk)) { $perNome[$nk] = $k }
   if (-not $canali.Contains($k)) { $canali[$k] = New-Object Collections.ArrayList }
   if (-not ($canali[$k] | Where-Object { $_.Url -eq $v.Url })) { [void]$canali[$k].Add($v) }
 }
 $ordineCat = 'Rai', 'Mediaset', 'Nazionali', 'Notizie', 'Sport', 'Bambini', 'Musica e Radiovisione', 'Istituzionali', 'Locali e altri'
-$righe = New-Object Collections.Generic.List[string]
-$righe.Add("#EXTM3U x-tvg-url=`"$EPG_URL`" url-tvg=`"$EPG_URL`"")
 $elenco = foreach ($k in $canali.Keys) {
   $lista = $canali[$k]; $p = $lista[0]
   $nome = ([regex]::Replace($p.Nome, '\s*(\(.*?\)|\[.*?\]|[Ⓐ-ⓩ])', '')).Trim()
   $chno = Trova-LCN $p
   $logo = ($lista | ForEach-Object { $_.Attr['tvg-logo'] } | Where-Object { $_ } | Select-Object -First 1)
-  [pscustomobject]@{ Nome = $nome; Chno = $chno; Logo = $logo; Epg = $p.EpgId; Cat = (Categoria $p ([bool]$p.EpgId) $chno); Flussi = $(if ($Backup) { $lista } else { @($p) }) }
+  [pscustomobject]@{ Nome = $nome; Chno = $chno; Logo = $logo; Epg = $null; EpgId = $p.EpgId; EpgGuida = $p.EpgGuida; Cat = (Categoria $p ([bool]$p.EpgId) $chno)
+                     Flussi = $(if ($Backup) { $lista } else { @($p) }); Url = $p.Url; Nota = $p.Nota }
 }
 # prima i canali con LCN nell'ordine del telecomando, poi gli altri per gruppo
 $elenco = $elenco | Sort-Object Chno, @{ e = { [array]::IndexOf($ordineCat, $_.Cat) } }, Nome
 if ($elenco.Count -lt $MinCanali) {
   throw "Solo $($elenco.Count) canali (minimo $MinCanali): le sorgenti sembrano irraggiungibili, la lista non viene sovrascritta."
 }
-foreach ($c in $elenco) {
-  $n = 0
-  foreach ($f in $c.Flussi) {
-    $titolo = if ($n -eq 0) { $c.Nome } else { "$($c.Nome) (backup $n)" }
-    $a = "tvg-id=`"$($c.Epg)`" tvg-name=`"$titolo`""
-    if ($c.Chno -lt 9999 -and $n -eq 0) { $a += " tvg-chno=`"$($c.Chno)`"" }
-    if ($c.Logo) { $a += " tvg-logo=`"$($c.Logo)`"" }
-    $righe.Add("#EXTINF:-1 $a group-title=`"$($c.Cat)`",$titolo")
-    foreach ($o in $f.Opz) { $righe.Add($o) }
-    $righe.Add($f.Url); $n++
+
+# id della guida unita: quello della fonte principale; per le altre, lo stesso id se non è già usato
+$usati = [ordered]@{}; $perGuida = @{}
+foreach ($c in ($elenco | Where-Object { $_.EpgId } | Sort-Object EpgGuida)) {
+  $id = $c.EpgId
+  if ($c.EpgGuida -gt 0 -and $usati.Contains($id)) { $id = "$id.g$($c.EpgGuida)" }
+  $c.Epg = $id; $usati[$id] = $c
+  $perGuida["$($c.EpgGuida)|$($c.EpgId)"] = $id
+}
+$fs = [IO.File]::Create($Guida)
+$gz = New-Object IO.Compression.GZipStream($fs, [IO.Compression.CompressionMode]::Compress)
+$sw = New-Object IO.StreamWriter($gz, (New-Object Text.UTF8Encoding($false)))
+$sw.WriteLine('<?xml version="1.0" encoding="UTF-8"?>')
+$sw.WriteLine('<tv generator-info-name="iptv-italia">')
+foreach ($id in $usati.Keys) {
+  $c = $usati[$id]
+  $sw.Write("<channel id=`"$([Security.SecurityElement]::Escape($id))`"><display-name lang=`"it`">$([Security.SecurityElement]::Escape($c.Nome))</display-name>")
+  if ($c.Logo) { $sw.Write("<icon src=`"$([Security.SecurityElement]::Escape($c.Logo))`" />") }
+  $sw.WriteLine('</channel>')
+}
+$programmi = 0
+foreach ($gu in $guide) {
+  foreach ($p in $gu.Xml.tv.programme) {
+    $id = $perGuida["$($gu.Indice)|$($p.channel)"]
+    if (-not $id -or ($p.stop -and $p.stop.Substring(0, 14) -lt $limite)) { continue }
+    $p.SetAttribute('channel', $id)
+    $sw.WriteLine($p.OuterXml); $programmi++
   }
 }
-[IO.File]::WriteAllLines($Uscita, $righe, (New-Object Text.UTF8Encoding($false)))
+$sw.WriteLine('</tv>'); $sw.Close()
 
+Write-Host '5/5  Scrivo playlist e rapporto...'
+Scrivi-M3U $Uscita $elenco
+$nazionali = @($elenco | Where-Object { $_.Chno -lt 9999 })
+Scrivi-M3U $UscitaNazionali $nazionali
+
+$md = New-Object Collections.Generic.List[string]
 $conEpg = @($elenco | Where-Object { $_.Epg }).Count
+$md.Add('# Stato dei canali'); $md.Add('')
+$md.Add("Aggiornato il $($oggi.ToString('yyyy-MM-dd')) da ``genera_lista.ps1``.")
+$md.Add('')
+$md.Add("- **$($elenco.Count)** canali in ``lista_italia.m3u``, **$($nazionali.Count)** con numero LCN in ``lista_nazionali.m3u``")
+$md.Add("- **$conEpg** canali con guida EPG ($programmi programmi in ``guida.xml.gz``)")
+$md.Add("- Fonti EPG usate: " + (($guide | ForEach-Object { $g = $_; "$($g.Nome) ($(@($elenco | Where-Object { $_.EpgGuida -eq $g.Indice -and $_.Epg }).Count))" }) -join ', '))
+$note = @($elenco | Where-Object { $_.Nota -like 'non *' })
+if ($note.Count) { $md.Add("- **$($note.Count)** canali tenuti anche se oggi non hanno risposto (tolleranza di $GiorniTolleranza giorni)") }
+$md.Add('')
+$mancanti = @($LCN.Keys | Where-Object { $n = $_; -not ($nazionali | Where-Object { $_.Chno -eq $n }) } | Sort-Object)
+if ($mancanti.Count) {
+  $md.Add('## Numeri LCN senza un flusso funzionante'); $md.Add('')
+  $md.Add(($mancanti | ForEach-Object { "$_ $(@($LCN[$_])[0])" }) -join ' · ')
+  $md.Add('')
+}
+$senzaLcn = @($elenco | Where-Object { $_.Epg -and $_.Chno -eq 9999 -and $_.Cat -ne 'Rai' })
+if ($senzaLcn.Count) {
+  $md.Add('## Canali con guida EPG ma senza numero LCN'); $md.Add('')
+  $md.Add('Possibili canali nazionali da aggiungere alla tabella `$LCN` dello script:'); $md.Add('')
+  $md.Add(($senzaLcn | ForEach-Object { $_.Nome }) -join ' · ')
+  $md.Add('')
+}
+$md.Add('## Elenco'); $md.Add('')
+$md.Add('| LCN | Canale | Gruppo | Fonte | EPG | Note |')
+$md.Add('|---:|---|---|---|:---:|---|')
+foreach ($c in $elenco) {
+  $host_ = ([Uri]$c.Url).Host
+  $md.Add("| $(if ($c.Chno -lt 9999) { $c.Chno }) | $($c.Nome -replace '\|', '/') | $($c.Cat) | $host_ | $(if ($c.Epg) { '✓' } else { '' }) | $($c.Nota) |")
+}
+[IO.File]::WriteAllLines($Rapporto, $md, (New-Object Text.UTF8Encoding($false)))
+
 Write-Host ''
-Write-Host "Fatto: $($elenco.Count) canali, $conEpg con EPG -> $Uscita"
+Write-Host "Fatto: $($elenco.Count) canali ($($nazionali.Count) nazionali), $conEpg con EPG, $programmi programmi in guida"
 $elenco | Group-Object Cat | Sort-Object { [array]::IndexOf($ordineCat, $_.Name) } | ForEach-Object { Write-Host ("  {0,-24} {1,3}" -f $_.Name, $_.Count) }

@@ -1,2 +1,4 @@
 *.xml
 *.xml.gz
+stato.json
+stato.bak
