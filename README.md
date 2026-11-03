@@ -41,7 +41,7 @@ I canali nazionali hanno la **numerazione LCN italiana** del digitale terrestre 
 
 Ogni notte GitHub Actions ([`aggiorna-lista.yml`](.github/workflows/aggiorna-lista.yml)) rigenera playlist, guida e rapporto e li pubblica. Gli URL restano sempre gli stessi. Si può avviare anche a mano dalla scheda **Actions** → **Aggiorna lista** → **Run workflow**.
 
-- I server di GitHub sono fuori dall'Italia, quindi lì lo script gira con `-TieniGeo`: i flussi segnalati come geobloccati vengono mantenuti senza verificarli.
+- I server di GitHub sono fuori dall'Italia, quindi lì lo script gira con `-TieniGeo`: i flussi segnalati come geobloccati vengono mantenuti senza verificarli. Lo stesso vale per i server che rispondono solo dall'Italia senza essere segnalati, elencati in `$HOST_SOLO_ITALIA` nello script.
 - Un flusso che una notte non risponde resta in lista se ha funzionato negli ultimi 3 giorni, così un guasto passeggero non fa sparire il canale. La data dell'ultima risposta di ogni flusso è in `stato.json`.
 - Guida (`guida.xml.gz`) e stato (`stato.json`) sono pubblicati nella release [`dati`](https://github.com/Nanobuo/iptv-italia/releases/tag/dati), per non appesantire il repository.
 

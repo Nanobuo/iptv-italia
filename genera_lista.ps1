@@ -175,6 +175,18 @@ $FONTI_FISSE = @(
   @{ Nome = 'Rai 2'; Id = 'Rai2.it'; Url = 'https://mediapolis.rai.it/relinker/relinkerServlet.htm?cont=308718&output=7&forceUserAgent=raiplayappletv' }
 )
 
+# Server che rispondono solo dall'Italia ma che le sorgenti non segnalano come geobloccati.
+# Con -TieniGeo (GitHub Actions) i loro flussi restano in lista senza verifica, come quelli segnalati.
+# Per aggiungerne: in STATO.md cerca i canali che "non rispondono da N giorni" e prova il flusso dall'Italia.
+$HOST_SOLO_ITALIA = @(
+  'live-embed.supertennix.hiway.media'   # SuperTennis
+  'ippicabetflag-live.morescreens.com'   # EQUtv
+  'distribution.sportitalialive.it'      # Lazio Style Channel
+  'nuovatv.net'                          # Nuova Tv 2
+  'www.theclubfactory.com'               # Tele Club Italia
+  '64b16f23efbee.streamlock.net'         # Televallo Trapani
+)
+
 Write-Host '1/5  Scarico le playlist sorgente...'
 $voci = @()
 foreach ($f in $FONTI_FISSE) {
@@ -187,6 +199,10 @@ $org = $org | Where-Object { $_.Attr['tvg-id'] -match '\.(it|va|sm)(@|$)' -and $
 $voci += $org
 # i link YouTube non sono riproducibili nei player IPTV senza resolver
 $voci = $voci | Where-Object { $_.Url -notmatch 'youtube\.com|youtu\.be' }
+foreach ($v in $voci) {
+  $u = $null
+  if ([Uri]::TryCreate($v.Url, 'Absolute', [ref]$u) -and $HOST_SOLO_ITALIA -contains $u.Host) { $v.Geo = $true }
+}
 # Ordine di preferenza a parità di canale:
 #   0 fonti fisse; 1 flussi ufficiali delle emittenti (Rai, Mediaset, La7), più stabili; 2 ritrasmissioni di terzi.
 # Il relinker Rai rifiuta lo user-agent di VLC: gli si dichiara quello di un browser.
