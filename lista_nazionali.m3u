@@ -42,7 +42,7 @@ https://hlslive-web-gcdn-skycdn-it.akamaized.net/TACT/11219/cieloweb/master.m3u8
 https://live02-seg.msf.cdn.mediaset.net/live/ch-ts/ts-clr.isml/index.m3u8
 #EXTINF:-1 tvg-id="TV2000.it" tvg-name="TV 2000" tvg-chno="28" tvg-logo="https://i.imgur.com/x7RaK3a.png" group-title="Nazionali",TV 2000
 https://hls-live-tv2000.akamaized.net/hls/live/2028510/tv2000/master.m3u8
-#EXTINF:-1 tvg-id="LA7.CINEMA.it" tvg-name="La7 Cinema" tvg-chno="29" tvg-logo="https://i.imgur.com/khPweok.png" group-title="Nazionali",La7 Cinema
+#EXTINF:-1 tvg-id="" tvg-name="La7 Cinema" tvg-chno="29" tvg-logo="https://i.imgur.com/khPweok.png" group-title="Nazionali",La7 Cinema
 http://102.129.186.182:81/la7d/index.m3u8
 #EXTINF:-1 tvg-id="La.5.it" tvg-name="La 5" tvg-chno="30" tvg-logo="https://i.imgur.com/UNyJaho.png" group-title="Mediaset",La 5
 https://live02-seg.msf.cdn.mediaset.net/live/ch-ka/ka-clr.isml/index.m3u8
