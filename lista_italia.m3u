@@ -502,8 +502,6 @@ https://www.ntimedia.it/video/S0B/S0B_master.m3u8
 https://nuovatv.net:8443/tv/stream.m3u8
 #EXTINF:-1 tvg-id="" tvg-name="Nuova Tv 2" tvg-logo="https://i.imgur.com/0vauyV3.png" group-title="Locali e altri",Nuova Tv 2
 https://nuovatv.net:8443/tv2/stream.m3u8
-#EXTINF:-1 tvg-id="" tvg-name="Nuova TV Nazionale" tvg-logo="https://i.imgur.com/QWlRuXg.png" group-title="Locali e altri",Nuova TV Nazionale
-https://stream4.xdevel.com/video0s975955-782/stream/playlist.m3u8
 #EXTINF:-1 tvg-id="" tvg-name="Nuvola Tv" tvg-logo="https://i.imgur.com/EDGez2x.png" group-title="Locali e altri",Nuvola Tv
 https://stream.nuvola.tv:8181/memfs/4aaa6328-1879-4ebf-b18a-498146d0c61c.m3u8
 #EXTINF:-1 tvg-id="" tvg-name="Odeon 24" tvg-logo="https://i.imgur.com/Ho7SdXY.png" group-title="Locali e altri",Odeon 24

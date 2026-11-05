@@ -1,11 +1,11 @@
 # Stato dei canali
 
-Aggiornato il 2026-11-04 da `genera_lista.ps1`.
+Aggiornato il 2026-11-05 da `genera_lista.ps1`.
 
-- **380** canali in `lista_italia.m3u`, **80** con numero LCN in `lista_nazionali.m3u`
-- **77** canali con guida EPG (8536 programmi in `guida.xml.gz`)
+- **379** canali in `lista_italia.m3u`, **80** con numero LCN in `lista_nazionali.m3u`
+- **77** canali con guida EPG (8488 programmi in `guida.xml.gz`)
 - Fonti EPG usate: epgshare01 (63), open-epg italy2 (6), open-epg italy3 (6), iptv-epg.org (2)
-- **3** canali tenuti anche se oggi non hanno risposto (tolleranza di 3 giorni)
+- **6** canali tenuti anche se oggi non hanno risposto (tolleranza di 3 giorni)
 
 ## Numeri LCN senza un flusso funzionante
 
@@ -129,7 +129,7 @@ Mediaset Italia - America · Mediaset Italia - Australia e Asia · Mediaset Ital
 |  | San Marino RTV Sport | Sport | d2hrvno5bw6tg2.cloudfront.net |  |  |
 |  | Sportitalia SOLOCALCIO | Sport | distribution.sportitalialive.it |  | geobloccato, non verificato |
 |  | 51 Radio TV | Musica e Radiovisione | wms.shared.streamshow.it |  |  |
-|  | 7 RadioVisione | Musica e Radiovisione | stream10.xdevel.com |  | non risponde da 2 giorni |
+|  | 7 RadioVisione | Musica e Radiovisione | stream10.xdevel.com |  | non risponde da 3 giorni |
 |  | Giornale Radio Tv | Musica e Radiovisione | 5f204aff97bee.streamlock.net |  |  |
 |  | Kiss Kiss TV | Musica e Radiovisione | 58f12ffd2447a.streamlock.net |  |  |
 |  | Onda Web Radio | Musica e Radiovisione | 178.33.224.197 |  |  |
@@ -177,12 +177,12 @@ Mediaset Italia - America · Mediaset Italia - Australia e Asia · Mediaset Ital
 |  | TRSP Tele Radio San Pietro | Musica e Radiovisione | 5a1178b42cc03.streamlock.net |  |  |
 |  | Vintage Radio Tv | Musica e Radiovisione | 5f22d76e220e1.streamlock.net |  |  |
 |  | Virgin Radio TV | Musica e Radiovisione | live02-seg.msr.cdn.mediaset.net | ✓ | geobloccato, non verificato |
-|  | Visual Radio | Musica e Radiovisione | wms.shared.streamshow.it |  | non ha risposto oggi |
+|  | Visual Radio | Musica e Radiovisione | wms.shared.streamshow.it |  |  |
 |  | Camera dei Deputati | Istituzionali | video-ar.radioradicale.it |  |  |
 |  | Senato TV | Istituzionali | senato-live.morescreens.com |  |  |
 |  | 111 Tv | Locali e altri | 5db313b643fd8.streamlock.net |  |  |
 |  | 12 Tv Parma | Locali e altri | 5929b138b139d.streamlock.net |  |  |
-|  | 50 Canale | Locali e altri | load-balancer.azotosolutions.com |  |  |
+|  | 50 Canale | Locali e altri | load-balancer.azotosolutions.com |  | non ha risposto oggi |
 |  | 7 Gold | Locali e altri | streamcdnr6-dddfac816632463dac50b21109dc1bb3.msvdn.net |  |  |
 |  | 70-80 TV | Locali e altri | 585b674743bbb.streamlock.net |  |  |
 |  | A2i TV | Locali e altri | stream.sen-gt.com |  |  |
@@ -223,7 +223,7 @@ Mediaset Italia - America · Mediaset Italia - Australia e Asia · Mediaset Ital
 |  | Deluxe 139 | Locali e altri | 59d7d6f47d7fc.streamlock.net |  |  |
 |  | Di.Tv 80 | Locali e altri | 5f22d76e220e1.streamlock.net |  |  |
 |  | Di.Tv 92 | Locali e altri | media2021.rtvweb.com |  |  |
-|  | Digital Tv7 Benevento | Locali e altri | streaming.senecadot.com |  |  |
+|  | Digital Tv7 Benevento | Locali e altri | streaming.senecadot.com |  | non ha risposto oggi |
 |  | Easy Tv Canale 190 | Locali e altri | diretta.arcapuglia.it |  |  |
 |  | E'live Brescia Tv | Locali e altri | 59d7d6f47d7fc.streamlock.net |  |  |
 |  | Enjoy Television | Locali e altri | str27.fluid.stream |  |  |
@@ -265,8 +265,7 @@ Mediaset Italia - America · Mediaset Italia - Australia e Asia · Mediaset Ital
 |  | NTI Canale 271 | Locali e altri | www.ntimedia.it |  |  |
 |  | Nuova Tv 1 | Locali e altri | nuovatv.net |  | geobloccato, non verificato |
 |  | Nuova Tv 2 | Locali e altri | nuovatv.net |  | geobloccato, non verificato |
-|  | Nuova TV Nazionale | Locali e altri | stream4.xdevel.com |  | non risponde da 3 giorni |
-|  | Nuvola Tv | Locali e altri | stream.nuvola.tv |  |  |
+|  | Nuvola Tv | Locali e altri | stream.nuvola.tv |  | non ha risposto oggi |
 |  | Odeon 24 | Locali e altri | 5f11919dca3bd.streamlock.net |  |  |
 |  | Onda Novara Tv | Locali e altri | 585b674743bbb.streamlock.net |  |  |
 |  | Onda TV | Locali e altri | 5926fc9c7c5b2.streamlock.net |  |  |
@@ -286,7 +285,7 @@ Mediaset Italia - America · Mediaset Italia - Australia e Asia · Mediaset Ital
 |  | Primocanale | Locali e altri | msh0203.stream.seeweb.it |  |  |
 |  | Promovideo Tv | Locali e altri | media2021.rtvweb.com |  |  |
 |  | Quarto Canale Flegreo | Locali e altri | live.mariatvcdn.com |  |  |
-|  | Ran Friul | Locali e altri | load-balancer.azotosolutions.com |  |  |
+|  | Ran Friul | Locali e altri | load-balancer.azotosolutions.com |  | non ha risposto oggi |
 |  | Reggio Tv | Locali e altri | cdn10.streamshow.it |  |  |
 |  | Rete 55 | Locali e altri | live1.giocabet.tv |  |  |
 |  | Rete 7 Tv | Locali e altri | stream.ets-sistemi.it |  |  |
@@ -326,7 +325,7 @@ Mediaset Italia - America · Mediaset Italia - Australia e Asia · Mediaset Ital
 |  | Tele Bruzzano | Locali e altri | playerssl.telemia.tv |  |  |
 |  | Tele Chiara | Locali e altri | fms.tvavicenza.it |  |  |
 |  | Tele Club Italia | Locali e altri | www.theclubfactory.com |  | geobloccato, non verificato |
-|  | Tele Cupole | Locali e altri | load-balancer.azotosolutions.com |  |  |
+|  | Tele Cupole | Locali e altri | load-balancer.azotosolutions.com |  | non ha risposto oggi |
 |  | Tele Foggia | Locali e altri | 59d7d6f47d7fc.streamlock.net |  |  |
 |  | Tele Friuli | Locali e altri | 5757bf2aa08e42248fb9b9d620f5d900.msvdn.net |  |  |
 |  | Tele Gela | Locali e altri | 64b16f23efbee.streamlock.net |  | geobloccato, non verificato |
