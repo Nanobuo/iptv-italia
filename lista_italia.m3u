@@ -206,6 +206,8 @@ https://d3k8wzt41aflvx.cloudfront.net/INTERTV/Live.m3u8
 http://team-tv.co:81/milan/index.m3u8
 #EXTINF:-1 tvg-id="Nick.Jr.it" tvg-name="Nick Jr." tvg-logo="https://i.imgur.com/6p3eFgf.png" group-title="Nazionali",Nick Jr.
 http://102.129.186.182:81/nick/index.m3u8
+#EXTINF:-1 tvg-id="VALUE.24.TV.it" tvg-name="Value 24 TV" tvg-logo="https://i.imgur.com/FdEyI96.png" group-title="Nazionali",Value 24 TV
+https://5f22d76e220e1.streamlock.net/canale1/canale1/playlist.m3u8
 #EXTINF:-1 tvg-id="" tvg-name="LaC News 24" tvg-logo="https://i.imgur.com/02vCECa.png" group-title="Notizie",LaC News 24
 https://f5842579ff984c1c98d63b8d789673eb.msvdn.net/live/S27391994/HVvPMzy/playlist.m3u8
 #EXTINF:-1 tvg-id="TGNORBA24.it" tvg-name="TG Norba 24" tvg-logo="https://upload.wikimedia.org/wikipedia/commons/thumb/1/15/Tg_norba24.png/500px-Tg_norba24.png" group-title="Notizie",TG Norba 24
@@ -230,8 +232,6 @@ https://d2hrvno5bw6tg2.cloudfront.net/smrtv-ch02/smil:ch-02.smil/master.m3u8
 https://distribution.sportitalialive.it/sportitalia/sisolocalcio_abr/playlist.m3u8
 #EXTINF:-1 tvg-id="" tvg-name="51 Radio TV" tvg-logo="https://www.51news.it/images/loghi/logo_tv_radio_51news.png" group-title="Musica e Radiovisione",51 Radio TV
 http://wms.shared.streamshow.it/canale51/canale51/playlist.m3u8
-#EXTINF:-1 tvg-id="" tvg-name="7 RadioVisione" tvg-logo="https://radio7note.com/img/favicon/android-icon-192x192.png" group-title="Musica e Radiovisione",7 RadioVisione
-https://stream10.xdevel.com/video1s976543-1932/stream/playlist.m3u8
 #EXTINF:-1 tvg-id="" tvg-name="Giornale Radio Tv" tvg-logo="https://i.imgur.com/TMtvCLL.jpg" group-title="Musica e Radiovisione",Giornale Radio Tv
 https://5f204aff97bee.streamlock.net/GR_tv/livestream/playlist.m3u8
 #EXTINF:-1 tvg-id="" tvg-name="Kiss Kiss TV" tvg-logo="https://i.imgur.com/ja6c2YZ.png" group-title="Musica e Radiovisione",Kiss Kiss TV
@@ -755,8 +755,6 @@ https://umbriatv.stream.rubidia.it:8083/live/umbriatv/playlist.m3u8
 https://stream6-rai-it.akamaized.net/live/uninettuno/playlist.m3u8
 #EXTINF:-1 tvg-id="" tvg-name="Uno4 Tv" tvg-logo="https://i.imgur.com/wfPPpBA.png" group-title="Locali e altri",Uno4 Tv
 https://cdn.uno4.it/index.m3u8
-#EXTINF:-1 tvg-id="" tvg-name="Value 24 TV" tvg-logo="https://i.imgur.com/FdEyI96.png" group-title="Locali e altri",Value 24 TV
-https://5f22d76e220e1.streamlock.net/canale1/canale1/playlist.m3u8
 #EXTINF:-1 tvg-id="" tvg-name="Vera Tv" tvg-logo="https://i.imgur.com/djMvkvN.png" group-title="Locali e altri",Vera Tv
 https://cdn9.streamshow.it/cloud-veratv/veratv/playlist.m3u8
 #EXTINF:-1 tvg-id="" tvg-name="Video Calabria" tvg-logo="https://i.imgur.com/Bc2AvIm.png" group-title="Locali e altri",Video Calabria
