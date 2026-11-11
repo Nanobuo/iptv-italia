@@ -76,6 +76,9 @@ https://mediapolis.rai.it/relinker/relinkerServlet.htm?cont=746953&output=7&forc
 https://mediapolis.rai.it/relinker/relinkerServlet.htm?cont=746899&output=7&forceUserAgent=raiplayappletv
 #EXTINF:-1 tvg-id="Frisbee.it" tvg-name="Frisbee" tvg-chno="44" tvg-logo="https://i.imgur.com/9y1zIAe.png" group-title="Bambini",Frisbee
 https://d6m7lubks416z.cloudfront.net/v1/master/3722c60a815c199d9c0ef36c5b73da68a62b09d1/cc-zmbstsedxme9s/Frisbee_IT.m3u8
+#EXTINF:-1 tvg-id="" tvg-name="Boing Plus" tvg-chno="45" tvg-logo="https://i.imgur.com/STbfHwE.png" group-title="Mediaset",Boing Plus
+#EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Safari/537.36
+http://95.141.36.9:8080/stream/181/index.m3u8
 #EXTINF:-1 tvg-id="Cartoonito.it" tvg-name="Cartoonito" tvg-chno="46" tvg-logo="https://i.imgur.com/oK2DcDJ.png" group-title="Mediaset",Cartoonito
 https://live02-seg.msf.cdn.mediaset.net/live/ch-la/la-clr.isml/index.m3u8
 #EXTINF:-1 tvg-id="Super!.it" tvg-name="Super!" tvg-chno="47" tvg-logo="https://thumb.wikimedia.org/wikipedia/commons/thumb/d/d8/Super%21_logo_2015.svg/330px-Super%21_logo_2015.svg.png" group-title="Nazionali",Super!

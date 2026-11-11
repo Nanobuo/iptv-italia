@@ -76,6 +76,9 @@ https://mediapolis.rai.it/relinker/relinkerServlet.htm?cont=746953&output=7&forc
 https://mediapolis.rai.it/relinker/relinkerServlet.htm?cont=746899&output=7&forceUserAgent=raiplayappletv
 #EXTINF:-1 tvg-id="Frisbee.it" tvg-name="Frisbee" tvg-chno="44" tvg-logo="https://i.imgur.com/9y1zIAe.png" group-title="Bambini",Frisbee
 https://d6m7lubks416z.cloudfront.net/v1/master/3722c60a815c199d9c0ef36c5b73da68a62b09d1/cc-zmbstsedxme9s/Frisbee_IT.m3u8
+#EXTINF:-1 tvg-id="" tvg-name="Boing Plus" tvg-chno="45" tvg-logo="https://i.imgur.com/STbfHwE.png" group-title="Mediaset",Boing Plus
+#EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Safari/537.36
+http://95.141.36.9:8080/stream/181/index.m3u8
 #EXTINF:-1 tvg-id="Cartoonito.it" tvg-name="Cartoonito" tvg-chno="46" tvg-logo="https://i.imgur.com/oK2DcDJ.png" group-title="Mediaset",Cartoonito
 https://live02-seg.msf.cdn.mediaset.net/live/ch-la/la-clr.isml/index.m3u8
 #EXTINF:-1 tvg-id="Super!.it" tvg-name="Super!" tvg-chno="47" tvg-logo="https://thumb.wikimedia.org/wikipedia/commons/thumb/d/d8/Super%21_logo_2015.svg/330px-Super%21_logo_2015.svg.png" group-title="Nazionali",Super!
@@ -209,6 +212,21 @@ http://102.129.186.182:81/nick/index.m3u8
 #EXTINF:-1 tvg-id="Nickelodeon.it" tvg-name="Nickelodeon" tvg-logo="https://i.imgur.com/E84jnP8.png" group-title="Nazionali",Nickelodeon
 #EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Safari/537.36
 http://185.227.34.104/stream/117/index.m3u8
+#EXTINF:-1 tvg-id="Sky.Cinema.Action.it" tvg-name="Sky Cinema Action" tvg-logo="https://upload.wikimedia.org/wikipedia/commons/thumb/0/0a/Sky_Cinema_Action_-_Logo_2021.svg/960px-Sky_Cinema_Action_-_Logo_2021.svg.png" group-title="Nazionali",Sky Cinema Action
+#EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Safari/537.36
+http://109.169.87.42:8080/stream/26/index.m3u8
+#EXTINF:-1 tvg-id="Sky.Cinema.Collection.it" tvg-name="Sky Cinema Collection" tvg-logo="https://upload.wikimedia.org/wikipedia/commons/thumb/2/20/Sky_Cinema_Collection_-_Logo_2021.svg/960px-Sky_Cinema_Collection_-_Logo_2021.svg.png" group-title="Nazionali",Sky Cinema Collection
+#EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Safari/537.36
+http://109.169.87.42:8080/stream/18/index.m3u8
+#EXTINF:-1 tvg-id="Sky.Cinema.Family.it" tvg-name="Sky Cinema Family" tvg-logo="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2b/Sky_Cinema_Family_-_Logo_2021.svg/960px-Sky_Cinema_Family_-_Logo_2021.svg.png" group-title="Nazionali",Sky Cinema Family
+#EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Safari/537.36
+http://109.169.87.42:8080/stream/22/index.m3u8
+#EXTINF:-1 tvg-id="Sky.Cinema.Suspense.it" tvg-name="Sky Cinema Suspense" tvg-logo="https://upload.wikimedia.org/wikipedia/commons/thumb/6/68/Sky_Cinema_Suspense_-_Logo_2021.svg/960px-Sky_Cinema_Suspense_-_Logo_2021.svg.png" group-title="Nazionali",Sky Cinema Suspense
+#EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Safari/537.36
+http://109.169.87.42:8080/stream/30/index.m3u8
+#EXTINF:-1 tvg-id="Sky.Cinema.Uno.it" tvg-name="Sky Cinema Uno" tvg-logo="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a1/Sky_Cinema_Uno_-_Logo_2021.svg/960px-Sky_Cinema_Uno_-_Logo_2021.svg.png" group-title="Nazionali",Sky Cinema Uno
+#EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Safari/537.36
+http://109.169.87.42:8080/stream/2/index.m3u8
 #EXTINF:-1 tvg-id="VALUE.24.TV.it" tvg-name="Value 24 TV" tvg-logo="https://i.imgur.com/FdEyI96.png" group-title="Nazionali",Value 24 TV
 https://5f22d76e220e1.streamlock.net/canale1/canale1/playlist.m3u8
 #EXTINF:-1 tvg-id="" tvg-name="LaC News 24" tvg-logo="https://i.imgur.com/02vCECa.png" group-title="Notizie",LaC News 24
@@ -541,8 +559,6 @@ https://iptv.peer.biz/live/peertv.m3u8
 http://102.129.186.182:81/pescacaccia/index.m3u8
 #EXTINF:-1 tvg-id="" tvg-name="Prima Tv Napoli" tvg-logo="https://i.imgur.com/yPuQeEy.jpg" group-title="Locali e altri",Prima Tv Napoli
 https://57068da1deb21.streamlock.net/primatvnapoli/primatvnapoli/playlist.m3u8
-#EXTINF:-1 tvg-id="" tvg-name="Prima Tv Sicilia" tvg-logo="https://i.imgur.com/br45JER.png" group-title="Locali e altri",Prima Tv Sicilia
-https://5db313b643fd8.streamlock.net/PrimaTV/PrimaTV/playlist.m3u8
 #EXTINF:-1 tvg-id="" tvg-name="PrimaFREE" tvg-logo="https://i.imgur.com/YrSSmOL.png" group-title="Locali e altri",PrimaFREE
 https://5f22d76e220e1.streamlock.net/primafree/primafree/playlist.m3u8
 #EXTINF:-1 tvg-id="" tvg-name="Primocanale" tvg-logo="https://i.imgur.com/xWF1A1U.png" group-title="Locali e altri",Primocanale
