@@ -120,7 +120,7 @@ https://live02-seg.msr.cdn.mediaset.net/live/ch-er/er-clr.isml/index.m3u8
 https://5f22d76e220e1.streamlock.net/canale6/canale6/playlist.m3u8
 #EXTINF:-1 tvg-id="Deejay.TV.it" tvg-name="Deejay TV" tvg-chno="69" tvg-logo="https://i.imgur.com/rlaKH6k.png" group-title="Musica e Radiovisione",Deejay TV
 https://4c4b867c89244861ac216426883d1ad0.msvdn.net/live/S85984808/sMO0tz9Sr2Rk/playlist.m3u8
-#EXTINF:-1 tvg-id="Radioitaliatv.it" tvg-name="RadioItaliaTV" tvg-chno="70" tvg-logo="https://i.imgur.com/4VCEJuJ.png" group-title="Musica e Radiovisione",RadioItaliaTV
+#EXTINF:-1 tvg-id="RadioItaliaTV.it" tvg-name="RadioItaliaTV" tvg-chno="70" tvg-logo="https://i.imgur.com/4VCEJuJ.png" group-title="Musica e Radiovisione",RadioItaliaTV
 https://radioitaliatv.akamaized.net/hls/live/2093117/RadioitaliaTV/master.m3u8
 #EXTINF:-1 tvg-id="Rai 4K.it" tvg-name="Rai 4K" tvg-chno="101" tvg-logo="https://i.imgur.com/5gkt9DD.png" group-title="Rai",Rai 4K
 https://raievent10-elem-live.akamaized.net/hls/live/619189/raievent10/raievent10/playlist.m3u8
@@ -218,6 +218,9 @@ http://109.169.87.42:8080/stream/26/index.m3u8
 #EXTINF:-1 tvg-id="Sky.Cinema.Collection.it" tvg-name="Sky Cinema Collection" tvg-logo="https://upload.wikimedia.org/wikipedia/commons/thumb/2/20/Sky_Cinema_Collection_-_Logo_2021.svg/960px-Sky_Cinema_Collection_-_Logo_2021.svg.png" group-title="Nazionali",Sky Cinema Collection
 #EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Safari/537.36
 http://109.169.87.42:8080/stream/18/index.m3u8
+#EXTINF:-1 tvg-id="Sky.Cinema.Due.it" tvg-name="Sky Cinema Due" tvg-logo="https://upload.wikimedia.org/wikipedia/commons/thumb/9/96/Sky_Cinema_Due_-_Logo_2021.svg/960px-Sky_Cinema_Due_-_Logo_2021.svg.png" group-title="Nazionali",Sky Cinema Due
+#EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Safari/537.36
+http://109.169.87.42:8080/stream/10/index.m3u8
 #EXTINF:-1 tvg-id="Sky.Cinema.Family.it" tvg-name="Sky Cinema Family" tvg-logo="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2b/Sky_Cinema_Family_-_Logo_2021.svg/960px-Sky_Cinema_Family_-_Logo_2021.svg.png" group-title="Nazionali",Sky Cinema Family
 #EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Safari/537.36
 http://109.169.87.42:8080/stream/22/index.m3u8
@@ -435,7 +438,7 @@ https://cdn2.streamshow.it/cloud-cremona1/cremona1/playlist.m3u8
 #EXTINF:-1 tvg-id="" tvg-name="Cusano Italia Tv" tvg-logo="https://i.imgur.com/9F1sVjZ.png" group-title="Locali e altri",Cusano Italia Tv
 https://router.xdevel.com/video0s975363-69/stream/playlist.m3u8
 #EXTINF:-1 tvg-id="" tvg-name="DellaTV" tvg-logo="https://i.imgur.com/6lvQ3Xz.png" group-title="Locali e altri",DellaTV
-https://live20.bozztv.com/giatvplayout7/giatv-211474/playlist.m3u8
+https://183.giatvcdn.com/giatvplayout7/giatv-211474/playlist.m3u8
 #EXTINF:-1 tvg-id="" tvg-name="Delta Tv" tvg-logo="https://i.imgur.com/mfwVXt7.png" group-title="Locali e altri",Delta Tv
 http://hbbtv-server.zivoli.it:8080/hls/deltatv/deltatv/index.m3u8
 #EXTINF:-1 tvg-id="" tvg-name="Deluxe 139" tvg-logo="https://i.imgur.com/kRexw3w.png" group-title="Locali e altri",Deluxe 139
@@ -559,6 +562,8 @@ https://iptv.peer.biz/live/peertv.m3u8
 http://102.129.186.182:81/pescacaccia/index.m3u8
 #EXTINF:-1 tvg-id="" tvg-name="Prima Tv Napoli" tvg-logo="https://i.imgur.com/yPuQeEy.jpg" group-title="Locali e altri",Prima Tv Napoli
 https://57068da1deb21.streamlock.net/primatvnapoli/primatvnapoli/playlist.m3u8
+#EXTINF:-1 tvg-id="" tvg-name="Prima Tv Sicilia" tvg-logo="https://i.imgur.com/br45JER.png" group-title="Locali e altri",Prima Tv Sicilia
+https://5db313b643fd8.streamlock.net/PrimaTV/PrimaTV/playlist.m3u8
 #EXTINF:-1 tvg-id="" tvg-name="PrimaFREE" tvg-logo="https://i.imgur.com/YrSSmOL.png" group-title="Locali e altri",PrimaFREE
 https://5f22d76e220e1.streamlock.net/primafree/primafree/playlist.m3u8
 #EXTINF:-1 tvg-id="" tvg-name="Primocanale" tvg-logo="https://i.imgur.com/xWF1A1U.png" group-title="Locali e altri",Primocanale
@@ -785,8 +790,6 @@ https://a8a02dd9a49a4fc9810743615c65ab73.msvdn.net/live/S76734991/i6NeNqLYaspb/p
 https://bfbe5f347ac4424faf719dda285bc39e.msvdn.net/live/S54897858/4gWO7tTzpK3N/playlist.m3u8
 #EXTINF:-1 tvg-id="" tvg-name="Video Regione Sicilia" tvg-logo="https://i.imgur.com/0szwnR3.png" group-title="Locali e altri",Video Regione Sicilia
 https://57214cb172d84f8cb311b91513952b03.msvdn.net/live/S40896499/ZuaLjACsWIL4/playlist.m3u8
-#EXTINF:-1 tvg-id="" tvg-name="Video Star Tv Sicilia" tvg-logo="https://i.imgur.com/1ddJVZ7.jpg" group-title="Locali e altri",Video Star Tv Sicilia
-https://stream9.xdevel.com/video0s976556-1321/stream/playlist.m3u8
 #EXTINF:-1 tvg-id="" tvg-name="Videonovara" tvg-logo="https://i.imgur.com/NnO7E5I.png" group-title="Locali e altri",Videonovara
 https://ed04.top-ix.org/avtvlive/videonovara/streaming/playlist.m3u8
 #EXTINF:-1 tvg-id="" tvg-name="Videotelecarnia" tvg-logo="https://i.imgur.com/r4K9JHW.png" group-title="Locali e altri",Videotelecarnia
