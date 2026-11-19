@@ -1,11 +1,11 @@
 # Stato dei canali
 
-Aggiornato il 2026-11-18 da `genera_lista.ps1`.
+Aggiornato il 2026-11-19 da `genera_lista.ps1`.
 
 - **383** canali in `lista_italia.m3u`, **81** con numero LCN in `lista_nazionali.m3u`
-- **89** canali con guida EPG (10155 programmi in `guida.xml.gz`)
+- **89** canali con guida EPG (10227 programmi in `guida.xml.gz`)
 - Fonti EPG usate: epgshare01 (73), open-epg italy2 (6), open-epg italy3 (6), iptv-epg.org (4)
-- **20** canali tenuti anche se oggi non hanno risposto (tolleranza di 3 giorni)
+- **15** canali tenuti anche se oggi non hanno risposto (tolleranza di 3 giorni)
 
 ## Numeri LCN senza un flusso funzionante
 
@@ -70,7 +70,7 @@ Mediaset Italia - America · Mediaset Italia - Australia e Asia · Mediaset Ital
 | 59 | Turbo | Nazionali | streaming.aurora.enhanced.live | ✓ |  |
 | 60 | Sportitalia Plus | Sport | sportsitalia-samsungitaly.amagi.tv | ✓ |  |
 | 64 | SuperTennis | Sport | live-embed.supertennix.hiway.media | ✓ | geobloccato, non verificato |
-| 65 | Alma TV | Nazionali | 5f11919dca3bd.streamlock.net | ✓ | non ha risposto oggi |
+| 65 | Alma TV | Nazionali | 5f11919dca3bd.streamlock.net | ✓ |  |
 | 66 | Radio 105 TV | Musica e Radiovisione | live02-seg.msr.cdn.mediaset.net | ✓ | geobloccato, non verificato |
 | 67 | R101 TV | Nazionali | live02-seg.msr.cdn.mediaset.net | ✓ | geobloccato, non verificato |
 | 68 | BOM Channel | Nazionali | 5f22d76e220e1.streamlock.net |  |  |
@@ -113,20 +113,20 @@ Mediaset Italia - America · Mediaset Italia - Australia e Asia · Mediaset Ital
 |  | Mediaset Italia - Australia e Asia | Mediaset | d3k8wzt41aflvx.cloudfront.net | ✓ |  |
 |  | Mediaset Italia - Europa e Africa | Mediaset | d3k8wzt41aflvx.cloudfront.net | ✓ |  |
 |  | Bike Channel HD | Nazionali | 018e1901ad234f04ae16388eda6778e5.msvdn.net | ✓ |  |
-|  | Boomerang | Nazionali | sultanios.alwaysdata.net | ✓ | non risponde da 2 giorni |
+|  | Boomerang | Nazionali | sultanios.alwaysdata.net | ✓ | non risponde da 3 giorni |
 |  | Comedy Central | Nazionali | team-tv.co | ✓ |  |
 |  | Donna TV | Nazionali | 5f11919dca3bd.streamlock.net | ✓ |  |
 |  | Horse TV | Nazionali | a-cdn.klowdtv.com | ✓ |  |
 |  | Inter TV | Nazionali | d3k8wzt41aflvx.cloudfront.net | ✓ |  |
 |  | Milan TV | Nazionali | team-tv.co | ✓ |  |
 |  | Nick Jr. | Nazionali | 102.129.186.182 | ✓ |  |
-|  | Nickelodeon | Nazionali | 185.227.34.104 | ✓ | non ha risposto oggi |
-|  | Sky Cinema Action | Nazionali | 109.169.87.42 | ✓ | non risponde da 2 giorni |
-|  | Sky Cinema Collection | Nazionali | 109.169.87.42 | ✓ | non risponde da 2 giorni |
-|  | Sky Cinema Due | Nazionali | 109.169.87.42 | ✓ | non risponde da 2 giorni |
-|  | Sky Cinema Family | Nazionali | 109.169.87.42 | ✓ | non risponde da 2 giorni |
-|  | Sky Cinema Suspense | Nazionali | 109.169.87.42 | ✓ | non risponde da 2 giorni |
-|  | Sky Cinema Uno | Nazionali | 109.169.87.42 | ✓ | non risponde da 2 giorni |
+|  | Nickelodeon | Nazionali | 185.227.34.104 | ✓ | non risponde da 2 giorni |
+|  | Sky Cinema Action | Nazionali | 109.169.87.42 | ✓ | non risponde da 3 giorni |
+|  | Sky Cinema Collection | Nazionali | 109.169.87.42 | ✓ | non risponde da 3 giorni |
+|  | Sky Cinema Due | Nazionali | 109.169.87.42 | ✓ | non risponde da 3 giorni |
+|  | Sky Cinema Family | Nazionali | 109.169.87.42 | ✓ | non risponde da 3 giorni |
+|  | Sky Cinema Suspense | Nazionali | 109.169.87.42 | ✓ | non risponde da 3 giorni |
+|  | Sky Cinema Uno | Nazionali | 109.169.87.42 | ✓ | non risponde da 3 giorni |
 |  | Value 24 TV | Nazionali | 5f22d76e220e1.streamlock.net | ✓ |  |
 |  | LaC News 24 | Notizie | f5842579ff984c1c98d63b8d789673eb.msvdn.net |  |  |
 |  | TG Norba 24 | Notizie | live-telenorba.cdn.netrw.it | ✓ |  |
@@ -139,8 +139,8 @@ Mediaset Italia - America · Mediaset Italia - Australia e Asia · Mediaset Ital
 |  | Rete 8 Sport | Sport | 64b16f23efbee.streamlock.net |  | geobloccato, non verificato |
 |  | San Marino RTV Sport | Sport | d2hrvno5bw6tg2.cloudfront.net |  |  |
 |  | Sportitalia SOLOCALCIO | Sport | distribution.sportitalialive.it |  | geobloccato, non verificato |
-|  | Cartoon Network | Bambini | 185.227.34.104 | ✓ | non ha risposto oggi |
-|  | DeA Kids | Bambini | 185.227.34.104 | ✓ | non ha risposto oggi |
+|  | Cartoon Network | Bambini | 185.227.34.104 | ✓ | non risponde da 2 giorni |
+|  | DeA Kids | Bambini | 185.227.34.104 | ✓ | non risponde da 2 giorni |
 |  | 51 Radio TV | Musica e Radiovisione | wms.shared.streamshow.it |  |  |
 |  | Giornale Radio Tv | Musica e Radiovisione | 5f204aff97bee.streamlock.net |  |  |
 |  | Kiss Kiss TV | Musica e Radiovisione | 58f12ffd2447a.streamlock.net |  |  |
@@ -155,7 +155,7 @@ Mediaset Italia - America · Mediaset Italia - Australia e Asia · Mediaset Ital
 |  | Radio Delta 1 TV | Musica e Radiovisione | stream6.xdevel.com |  |  |
 |  | Radio Digiesse TV | Musica e Radiovisione | w1.mediastreaming.it |  |  |
 |  | Radio Ibiza | Musica e Radiovisione | str48.fluid.stream |  |  |
-|  | Radio Iglesias | Musica e Radiovisione | wms.shared.streamshow.it |  |  |
+|  | Radio Iglesias | Musica e Radiovisione | wms.shared.streamshow.it |  | non ha risposto oggi |
 |  | Radio Iglesias Visual Radio | Musica e Radiovisione | 59d7d6f47d7fc.streamlock.net |  |  |
 |  | Radio Immagine Tv | Musica e Radiovisione | media.velcom.it |  |  |
 |  | Radio Italia Cina Tv | Musica e Radiovisione | 585b674743bbb.streamlock.net |  |  |
@@ -189,7 +189,7 @@ Mediaset Italia - America · Mediaset Italia - Australia e Asia · Mediaset Ital
 |  | TRSP Tele Radio San Pietro | Musica e Radiovisione | 5a1178b42cc03.streamlock.net |  |  |
 |  | Vintage Radio Tv | Musica e Radiovisione | 5f22d76e220e1.streamlock.net |  |  |
 |  | Virgin Radio TV | Musica e Radiovisione | live02-seg.msr.cdn.mediaset.net | ✓ | geobloccato, non verificato |
-|  | Visual Radio | Musica e Radiovisione | wms.shared.streamshow.it |  | non ha risposto oggi |
+|  | Visual Radio | Musica e Radiovisione | wms.shared.streamshow.it |  | non risponde da 2 giorni |
 |  | Camera dei Deputati | Istituzionali | video-ar.radioradicale.it |  |  |
 |  | Senato TV | Istituzionali | senato-live.morescreens.com |  |  |
 |  | 111 Tv | Locali e altri | 5db313b643fd8.streamlock.net |  |  |
@@ -203,7 +203,7 @@ Mediaset Italia - America · Mediaset Italia - Australia e Asia · Mediaset Ital
 |  | Alto Adige Tv | Locali e altri | 5f204aff97bee.streamlock.net |  |  |
 |  | AM Terni Television | Locali e altri | stream9.xdevel.com |  |  |
 |  | Antenna 2 Bergamo | Locali e altri | 58f12ffd2447a.streamlock.net |  |  |
-|  | Antenna Sicilia | Locali e altri | antennasicilialive.cdn.netrw.it |  | non ha risposto oggi |
+|  | Antenna Sicilia | Locali e altri | antennasicilialive.cdn.netrw.it |  |  |
 |  | Antenna Sud | Locali e altri | live-antennasud.cdn.netrw.it |  |  |
 |  | Antenna Sud Extra | Locali e altri | live-antennasud.cdn.netrw.it |  |  |
 |  | Aristanis SuperTv | Locali e altri | video2.azotosolutions.com |  |  |
@@ -224,7 +224,7 @@ Mediaset Italia - America · Mediaset Italia - Australia e Asia · Mediaset Ital
 |  | Canale Italia | Locali e altri | ovp-live.akamaized.net |  |  |
 |  | Casa Italia 53 | Locali e altri | ovp-live.akamaized.net |  |  |
 |  | Casa Sanremo Tv | Locali e altri | router.xdevel.com |  |  |
-|  | Castrovillari Tv | Locali e altri | msh0062.stream.seeweb.it |  | non ha risposto oggi |
+|  | Castrovillari Tv | Locali e altri | msh0062.stream.seeweb.it |  |  |
 |  | Cittaceleste Tv | Locali e altri | sportitaliaamd.akamaized.net |  |  |
 |  | Class TV Moda | Locali e altri | www.dailymotion.com |  |  |
 |  | Company Tv | Locali e altri | company.fluid.stream |  |  |
@@ -234,7 +234,7 @@ Mediaset Italia - America · Mediaset Italia - Australia e Asia · Mediaset Ital
 |  | Delta Tv | Locali e altri | hbbtv-server.zivoli.it |  |  |
 |  | Deluxe 139 | Locali e altri | 59d7d6f47d7fc.streamlock.net |  |  |
 |  | Di.Tv 80 | Locali e altri | 5f22d76e220e1.streamlock.net |  |  |
-|  | Digital Tv7 Benevento | Locali e altri | streaming.senecadot.com |  | non ha risposto oggi |
+|  | Digital Tv7 Benevento | Locali e altri | streaming.senecadot.com |  |  |
 |  | Easy Tv Canale 190 | Locali e altri | diretta.arcapuglia.it |  |  |
 |  | E'live Brescia Tv | Locali e altri | 59d7d6f47d7fc.streamlock.net |  |  |
 |  | Enjoy Television | Locali e altri | str27.fluid.stream |  |  |
@@ -254,7 +254,7 @@ Mediaset Italia - America · Mediaset Italia - Australia e Asia · Mediaset Ital
 |  | Italia2TV | Locali e altri | wms.shared.streamshow.it |  |  |
 |  | Iunior Tv | Locali e altri | 5f22d76e220e1.streamlock.net |  |  |
 |  | Juwelo | Locali e altri | sdn-global-live-streaming-packager-cache.3qsdn.com |  |  |
-|  | La Nuova Tv | Locali e altri | 5dcabf026b188.streamlock.net |  | non risponde da 2 giorni |
+|  | La Nuova Tv | Locali e altri | 5dcabf026b188.streamlock.net |  | non risponde da 3 giorni |
 |  | La Tenda Tv | Locali e altri | 2-fss-1.streamhoster.com |  |  |
 |  | La tr3 Marsala | Locali e altri | tsw.streamingwebtv24.it |  |  |
 |  | Lab Tv | Locali e altri | customer-yzibk50951uq418a.cloudflarestream.com |  |  |
@@ -275,7 +275,7 @@ Mediaset Italia - America · Mediaset Italia - Australia e Asia · Mediaset Ital
 |  | Nuova Tv 1 | Locali e altri | nuovatv.net |  | geobloccato, non verificato |
 |  | Nuova Tv 2 | Locali e altri | nuovatv.net |  | geobloccato, non verificato |
 |  | Nuvola Tv | Locali e altri | stream.nuvola.tv |  |  |
-|  | Odeon 24 | Locali e altri | 5f11919dca3bd.streamlock.net |  | non ha risposto oggi |
+|  | Odeon 24 | Locali e altri | 5f11919dca3bd.streamlock.net |  |  |
 |  | Onda Novara Tv | Locali e altri | 585b674743bbb.streamlock.net |  |  |
 |  | Onda TV | Locali e altri | 5926fc9c7c5b2.streamlock.net |  |  |
 |  | Onda Tv Sicilia | Locali e altri | 5926fc9c7c5b2.streamlock.net |  |  |
@@ -291,8 +291,8 @@ Mediaset Italia - America · Mediaset Italia - Australia e Asia · Mediaset Ital
 |  | Prima Tv Sicilia | Locali e altri | 5db313b643fd8.streamlock.net |  |  |
 |  | PrimaFREE | Locali e altri | 5f22d76e220e1.streamlock.net |  |  |
 |  | Primocanale | Locali e altri | msh0203.stream.seeweb.it |  |  |
-|  | Quarto Canale Flegreo | Locali e altri | live.mariatvcdn.com |  | non ha risposto oggi |
-|  | Ran Friul | Locali e altri | load-balancer.azotosolutions.com |  | non ha risposto oggi |
+|  | Quarto Canale Flegreo | Locali e altri | live.mariatvcdn.com |  |  |
+|  | Ran Friul | Locali e altri | load-balancer.azotosolutions.com |  |  |
 |  | Reggio Tv | Locali e altri | cdn10.streamshow.it |  |  |
 |  | Rete 55 | Locali e altri | live1.giocabet.tv |  |  |
 |  | Rete 7 Tv | Locali e altri | stream.ets-sistemi.it |  |  |
@@ -312,7 +312,7 @@ Mediaset Italia - America · Mediaset Italia - Australia e Asia · Mediaset Ital
 |  | Rttr | Locali e altri | 5f204aff97bee.streamlock.net |  |  |
 |  | Rtv 38 Toscana | Locali e altri | 845d8509d2cb4f249dd0b2ae5755b6c2.msvdn.net |  |  |
 |  | RTV38 | Locali e altri | 845d8509d2cb4f249dd0b2ae5755b6c2.msvdn.net |  |  |
-|  | Set Tv Cilento | Locali e altri | stream1.aswifi.it |  |  |
+|  | Set Tv Cilento | Locali e altri | stream1.aswifi.it |  | non ha risposto oggi |
 |  | Sicilia 24 Tv | Locali e altri | 5f22d76e220e1.streamlock.net |  |  |
 |  | Sienatv | Locali e altri | router.xdevel.com |  |  |
 |  | Sophia Tv | Locali e altri | bild-und-ton.stream |  |  |
@@ -361,7 +361,7 @@ Mediaset Italia - America · Mediaset Italia - Australia e Asia · Mediaset Ital
 |  | Telecity Piemonte | Locali e altri | 64b16f23efbee.streamlock.net |  | geobloccato, non verificato |
 |  | Telecity Valle D'Aosta | Locali e altri | 64b16f23efbee.streamlock.net |  | geobloccato, non verificato |
 |  | Telecolor | Locali e altri | 1aadf145546f475282c5b4e658c0ac4b.msvdn.net |  |  |
-|  | Telecolor Sicilia | Locali e altri | antennasicilialive.cdn.netrw.it |  | non ha risposto oggi |
+|  | Telecolor Sicilia | Locali e altri | antennasicilialive.cdn.netrw.it |  |  |
 |  | Telecolore Salerno | Locali e altri | stream10.xdevel.com |  |  |
 |  | Telegenova | Locali e altri | 64b16f23efbee.streamlock.net |  | geobloccato, non verificato |
 |  | Teleiblea | Locali e altri | 64b16f23efbee.streamlock.net |  | geobloccato, non verificato |
@@ -388,7 +388,7 @@ Mediaset Italia - America · Mediaset Italia - Australia e Asia · Mediaset Ital
 |  | Tv Luna Napoli | Locali e altri | diretta.arcapuglia.it |  |  |
 |  | Tv Prato | Locali e altri | live.mariatvcdn.com |  |  |
 |  | Tv Qui Modena | Locali e altri | 59d7d6f47d7fc.streamlock.net |  |  |
-|  | Tv Yes | Locali e altri | stream1.aswifi.it |  |  |
+|  | Tv Yes | Locali e altri | stream1.aswifi.it |  | non ha risposto oggi |
 |  | tv9 Telemaremma | Locali e altri | rtmp-live-ingest-us-east-1-universe-dacast-com.akamaized.net |  |  |
 |  | Tva Vicenza | Locali e altri | fms.tvavicenza.it |  |  |
 |  | TVL | Locali e altri | oj7lnw79lg82-hls-live.mariatvcdn.it |  |  |
