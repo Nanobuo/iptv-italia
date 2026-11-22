@@ -1,11 +1,11 @@
 # Stato dei canali
 
-Aggiornato il 2026-11-21 da `genera_lista.ps1`.
+Aggiornato il 2026-11-22 da `genera_lista.ps1`.
 
 - **373** canali in `lista_italia.m3u`, **81** con numero LCN in `lista_nazionali.m3u`
-- **80** canali con guida EPG (8673 programmi in `guida.xml.gz`)
+- **80** canali con guida EPG (8805 programmi in `guida.xml.gz`)
 - Fonti EPG usate: epgshare01 (65), open-epg italy2 (6), open-epg italy3 (6), iptv-epg.org (3)
-- **4** canali tenuti anche se oggi non hanno risposto (tolleranza di 3 giorni)
+- **6** canali tenuti anche se oggi non hanno risposto (tolleranza di 3 giorni)
 
 ## Numeri LCN senza un flusso funzionante
 
@@ -139,7 +139,7 @@ Mediaset Italia - America · Mediaset Italia - Australia e Asia · Mediaset Ital
 |  | Radio 3M InBlu | Musica e Radiovisione | stream.mariatvcdn.com |  |  |
 |  | Radio 51 Tv | Musica e Radiovisione | 59d7d6f47d7fc.streamlock.net |  |  |
 |  | Radio Arancia TV | Musica e Radiovisione | stream3.xdevel.com |  |  |
-|  | Radio Bianconera TV | Musica e Radiovisione | tmw.fluid.stream |  | non ha risposto oggi |
+|  | Radio Bianconera TV | Musica e Radiovisione | tmw.fluid.stream |  |  |
 |  | Radio Birikina Tv | Musica e Radiovisione | tvd-bk.fluid.stream |  |  |
 |  | Radio Bruno Tv | Musica e Radiovisione | router.xdevel.com |  |  |
 |  | Radio Capital TiVu | Musica e Radiovisione | 4c4b867c89244861ac216426883d1ad0.msvdn.net |  |  |
@@ -192,12 +192,12 @@ Mediaset Italia - America · Mediaset Italia - Australia e Asia · Mediaset Ital
 |  | A2i TV | Locali e altri | stream.sen-gt.com |  |  |
 |  | Alpauno | Locali e altri | 5f22d76e220e1.streamlock.net |  |  |
 |  | Alto Adige Tv | Locali e altri | 5f204aff97bee.streamlock.net |  |  |
-|  | AM Terni Television | Locali e altri | stream9.xdevel.com |  | non ha risposto oggi |
+|  | AM Terni Television | Locali e altri | stream9.xdevel.com |  | non risponde da 2 giorni |
 |  | Antenna 2 Bergamo | Locali e altri | 58f12ffd2447a.streamlock.net |  |  |
 |  | Antenna Sicilia | Locali e altri | antennasicilialive.cdn.netrw.it |  |  |
 |  | Antenna Sud | Locali e altri | live-antennasud.cdn.netrw.it |  |  |
 |  | Antenna Sud Extra | Locali e altri | live-antennasud.cdn.netrw.it |  |  |
-|  | Aristanis SuperTv | Locali e altri | video2.azotosolutions.com |  |  |
+|  | Aristanis SuperTv | Locali e altri | video2.azotosolutions.com |  | non ha risposto oggi |
 |  | Arte Network Orler | Locali e altri | tsw.streamingwebtv24.it |  |  |
 |  | Aurora Arte | Locali e altri | 59d7d6f47d7fc.streamlock.net |  |  |
 |  | Azzurra Tv Vco | Locali e altri | ed05.top-ix.org |  |  |
@@ -215,7 +215,7 @@ Mediaset Italia - America · Mediaset Italia - Australia e Asia · Mediaset Ital
 |  | Canale Italia | Locali e altri | ovp-live.akamaized.net |  |  |
 |  | Casa Italia 53 | Locali e altri | ovp-live.akamaized.net |  |  |
 |  | Casa Sanremo Tv | Locali e altri | router.xdevel.com |  |  |
-|  | Castrovillari Tv | Locali e altri | msh0062.stream.seeweb.it |  |  |
+|  | Castrovillari Tv | Locali e altri | msh0062.stream.seeweb.it |  | non ha risposto oggi |
 |  | Cittaceleste Tv | Locali e altri | sportitaliaamd.akamaized.net |  |  |
 |  | Class TV Moda | Locali e altri | www.dailymotion.com |  |  |
 |  | Company Tv | Locali e altri | company.fluid.stream |  |  |
@@ -319,7 +319,7 @@ Mediaset Italia - America · Mediaset Italia - Australia e Asia · Mediaset Ital
 |  | Tele Bari | Locali e altri | w1.mediastreaming.it |  |  |
 |  | Tele Belluno | Locali e altri | g2qd3exzy7an-hls-live.mariatvcdn.it |  |  |
 |  | Tele Boario | Locali e altri | stream7.xdevel.com |  |  |
-|  | Tele Bruzzano | Locali e altri | playerssl.telemia.tv |  | non risponde da 2 giorni |
+|  | Tele Bruzzano | Locali e altri | playerssl.telemia.tv |  |  |
 |  | Tele Chiara | Locali e altri | fms.tvavicenza.it |  |  |
 |  | Tele Club Italia | Locali e altri | www.theclubfactory.com |  | geobloccato, non verificato |
 |  | Tele Cupole | Locali e altri | load-balancer.azotosolutions.com |  |  |
@@ -345,14 +345,14 @@ Mediaset Italia - America · Mediaset Italia - Australia e Asia · Mediaset Ital
 |  | Tele Stabia / Gigli TV | Locali e altri | stream3.aswifi.it |  |  |
 |  | Tele Sud Puglia | Locali e altri | 64b16f23efbee.streamlock.net |  | geobloccato, non verificato |
 |  | Tele Tricolore | Locali e altri | 59d7d6f47d7fc.streamlock.net |  |  |
-|  | Tele8 Tv | Locali e altri | 57068da1deb21.streamlock.net |  |  |
+|  | Tele8 Tv | Locali e altri | 57068da1deb21.streamlock.net |  | non ha risposto oggi |
 |  | TeleArena | Locali e altri | 5ce9406b73c33.streamlock.net |  |  |
 |  | Telecity Lombardia | Locali e altri | 64b16f23efbee.streamlock.net |  | geobloccato, non verificato |
 |  | Telecity Piemonte | Locali e altri | 64b16f23efbee.streamlock.net |  | geobloccato, non verificato |
 |  | Telecity Valle D'Aosta | Locali e altri | 64b16f23efbee.streamlock.net |  | geobloccato, non verificato |
 |  | Telecolor | Locali e altri | 1aadf145546f475282c5b4e658c0ac4b.msvdn.net |  |  |
 |  | Telecolor Sicilia | Locali e altri | antennasicilialive.cdn.netrw.it |  |  |
-|  | Telecolore Salerno | Locali e altri | stream10.xdevel.com |  | non risponde da 2 giorni |
+|  | Telecolore Salerno | Locali e altri | stream10.xdevel.com |  | non risponde da 3 giorni |
 |  | Telegenova | Locali e altri | 64b16f23efbee.streamlock.net |  | geobloccato, non verificato |
 |  | Teleiblea | Locali e altri | 64b16f23efbee.streamlock.net |  | geobloccato, non verificato |
 |  | Teleleonessa | Locali e altri | wms.shared.streamshow.it |  |  |
@@ -382,7 +382,7 @@ Mediaset Italia - America · Mediaset Italia - Australia e Asia · Mediaset Ital
 |  | tv9 Telemaremma | Locali e altri | rtmp-live-ingest-us-east-1-universe-dacast-com.akamaized.net |  |  |
 |  | Tva Vicenza | Locali e altri | fms.tvavicenza.it |  |  |
 |  | TVL | Locali e altri | oj7lnw79lg82-hls-live.mariatvcdn.it |  |  |
-|  | Tvm Palermo | Locali e altri | 5db313b643fd8.streamlock.net |  |  |
+|  | Tvm Palermo | Locali e altri | 5db313b643fd8.streamlock.net |  | non ha risposto oggi |
 |  | Tvrs Tv | Locali e altri | cdn8.streamshow.it |  |  |
 |  | Umbria Tv | Locali e altri | umbriatv.stream.rubidia.it |  |  |
 |  | UniNettuno University TV | Locali e altri | stream6-rai-it.akamaized.net |  | geobloccato, non verificato |
