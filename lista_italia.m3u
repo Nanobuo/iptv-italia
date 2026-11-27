@@ -207,7 +207,7 @@ https://5f11919dca3bd.streamlock.net/donnatv/donnatv/playlist.m3u8
 https://a-cdn.klowdtv.com/live2/horsetv_720p/playlist.m3u8
 #EXTINF:-1 tvg-id="Inter.TV.it" tvg-name="Inter TV" tvg-logo="https://i.imgur.com/FUTqh2L.png" group-title="Nazionali",Inter TV
 https://d3k8wzt41aflvx.cloudfront.net/INTERTV/Live.m3u8
-#EXTINF:-1 tvg-id="Milan.TV.it" tvg-name="Milan TV" tvg-logo="https://i.imgur.com/gAMQfUw.png" group-title="Nazionali",Milan TV
+#EXTINF:-1 tvg-id="MilanTV.it" tvg-name="Milan TV" tvg-logo="https://i.imgur.com/gAMQfUw.png" group-title="Nazionali",Milan TV
 http://team-tv.co:81/milan/index.m3u8
 #EXTINF:-1 tvg-id="Nick.Jr.it" tvg-name="Nick Jr." tvg-logo="https://i.imgur.com/6p3eFgf.png" group-title="Nazionali",Nick Jr.
 http://102.129.186.182:81/nick/index.m3u8
