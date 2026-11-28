@@ -207,7 +207,7 @@ https://5f11919dca3bd.streamlock.net/donnatv/donnatv/playlist.m3u8
 https://a-cdn.klowdtv.com/live2/horsetv_720p/playlist.m3u8
 #EXTINF:-1 tvg-id="Inter.TV.it" tvg-name="Inter TV" tvg-logo="https://i.imgur.com/FUTqh2L.png" group-title="Nazionali",Inter TV
 https://d3k8wzt41aflvx.cloudfront.net/INTERTV/Live.m3u8
-#EXTINF:-1 tvg-id="MilanTV.it" tvg-name="Milan TV" tvg-logo="https://i.imgur.com/gAMQfUw.png" group-title="Nazionali",Milan TV
+#EXTINF:-1 tvg-id="Milan.TV.it" tvg-name="Milan TV" tvg-logo="https://i.imgur.com/gAMQfUw.png" group-title="Nazionali",Milan TV
 http://team-tv.co:81/milan/index.m3u8
 #EXTINF:-1 tvg-id="Nick.Jr.it" tvg-name="Nick Jr." tvg-logo="https://i.imgur.com/6p3eFgf.png" group-title="Nazionali",Nick Jr.
 http://102.129.186.182:81/nick/index.m3u8
@@ -461,6 +461,8 @@ http://wms.shared.streamshow.it/italia2/mp4:italia2/playlist.m3u8
 https://5f22d76e220e1.streamlock.net/iuniortv/iuniortv/playlist.m3u8
 #EXTINF:-1 tvg-id="" tvg-name="Juwelo" tvg-logo="https://i.imgur.com/T3r1khc.png" group-title="Locali e altri",Juwelo
 https://sdn-global-live-streaming-packager-cache.3qsdn.com/7841/7841_264_live.m3u8
+#EXTINF:-1 tvg-id="" tvg-name="La Nuova TV" tvg-logo="https://i.imgur.com/OHMv86A.png" group-title="Locali e altri",La Nuova TV
+https://play.video.serverroom.net/lanuovatvbas/livestream/playlist.m3u8
 #EXTINF:-1 tvg-id="" tvg-name="La Tenda Tv" tvg-logo="https://i.imgur.com/XnBp0hT.png" group-title="Locali e altri",La Tenda Tv
 https://2-fss-1.streamhoster.com/pl_148/206202-2980948-1/playlist.m3u8
 #EXTINF:-1 tvg-id="" tvg-name="La tr3 Marsala" tvg-logo="https://i.imgur.com/XlxpfEx.png" group-title="Locali e altri",La tr3 Marsala
